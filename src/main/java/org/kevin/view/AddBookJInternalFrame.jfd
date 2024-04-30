@@ -1,0 +1,29 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp contentPane::l:::x}"
+			"$verticalGroup": "par l {comp contentPane::l:::x}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "add book"
+			"closable": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space ::238:x, comp label1:::p::p, space :p:142:p}}"
+				"$verticalGroup": "par l {seq t {space ::159:x, comp label1:::p::p, space :p:131:p}}"
+			} ) {
+				name: "contentPane"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "null"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 15, 110 )
+			"size": new java.awt.Dimension( 400, 325 )
+		} )
+	}
+}

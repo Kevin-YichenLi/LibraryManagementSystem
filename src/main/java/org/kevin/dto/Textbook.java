@@ -2,21 +2,17 @@ package org.kevin.dto;
 
 import java.util.ArrayList;
 
-public class Textbook extends LibraryItem{
+public class Textbook extends LibraryItem {
     private Subject subject;
-    private String authorName;
 
     public Textbook() {
         super();
         subject = null;
-        authorName = null;
     }
 
-    public Textbook(String title, Genre genre, int yearOfPublication, Condition condition,
-                    int storageNum, ArrayList<String> comments, Subject subject, String authorName) {
-        super(title, genre, yearOfPublication, condition, storageNum, comments);
+    public Textbook(String title, Genre genre, int yearOfPublication, int storageNum, Subject subject, String author) {
+        super(author, title, genre, yearOfPublication, storageNum);
         this.subject = subject;
-        this.authorName = authorName;
     }
 
     public Subject getSubject() {
@@ -28,12 +24,12 @@ public class Textbook extends LibraryItem{
         this.subject = subject;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getTitle() {
@@ -60,14 +56,6 @@ public class Textbook extends LibraryItem{
         this.yearOfPublication = yearOfPublication;
     }
 
-    public Condition getCondition() {
-        return condition;
-    }
-
-    public void setCondition(Condition condition) {
-        this.condition = condition;
-    }
-
     public int getStorageNum() {
         return storageNum;
     }
@@ -83,18 +71,15 @@ public class Textbook extends LibraryItem{
     public void setComments(ArrayList<String> comments) {
         this.comments = comments;
     }
-
     @Override
     public String toString() {
         return "Textbook{" +
                 "subject=" + subject +
-                ", authorName='" + authorName + '\'' +
+                ", author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", genre=" + genre +
                 ", yearOfPublication=" + yearOfPublication +
-                ", condition=" + condition +
                 ", storageNum=" + storageNum +
-                ", comments=" + comments +
                 '}';
     }
 }

@@ -3,25 +3,21 @@ package org.kevin.dto;
 import java.util.ArrayList;
 
 public class Novel extends LibraryItem{
-    String authorName;
 
-    public Novel(String title, Genre genre, int yearOfPublication, Condition condition,
-                 int storageNum, ArrayList<String> comments, String authorName) {
-        super(title, genre, yearOfPublication, condition, storageNum, comments);
-        this.authorName = authorName;
+    public Novel(String title, Genre genre, int yearOfPublication, int storageNum, String author) {
+        super(author, title, genre, yearOfPublication, storageNum);
     }
 
     public Novel() {
         super();
-        authorName = null;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getTitle() {
@@ -48,14 +44,6 @@ public class Novel extends LibraryItem{
         this.yearOfPublication = yearOfPublication;
     }
 
-    public Condition getCondition() {
-        return condition;
-    }
-
-    public void setCondition(Condition condition) {
-        this.condition = condition;
-    }
-
     public int getStorageNum() {
         return storageNum;
     }
@@ -75,13 +63,11 @@ public class Novel extends LibraryItem{
     @Override
     public String toString() {
         return "Novel{" +
-                "authorName='" + authorName + '\'' +
+                "author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", genre=" + genre +
                 ", yearOfPublication=" + yearOfPublication +
-                ", condition=" + condition +
                 ", storageNum=" + storageNum +
-                ", comments=" + comments +
                 '}';
     }
 }
