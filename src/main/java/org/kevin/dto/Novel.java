@@ -3,9 +3,11 @@ package org.kevin.dto;
 import java.util.ArrayList;
 
 public class Novel extends LibraryItem{
+    private Genre genre;
 
     public Novel(String title, Genre genre, int yearOfPublication, int storageNum, String author) {
-        super(author, title, genre, yearOfPublication, storageNum);
+        super(author, title, yearOfPublication, storageNum);
+        this.genre = genre;
     }
 
     public Novel() {
@@ -18,6 +20,9 @@ public class Novel extends LibraryItem{
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+    public int getID() {
+        return id;
     }
 
     public String getTitle() {
@@ -59,6 +64,8 @@ public class Novel extends LibraryItem{
     public void setComments(ArrayList<String> comments) {
         this.comments = comments;
     }
+
+
 
     @Override
     public String toString() {

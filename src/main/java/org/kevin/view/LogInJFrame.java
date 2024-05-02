@@ -5,7 +5,7 @@
 package org.kevin.view;
 
 import org.kevin.dao.UserDao;
-import org.kevin.model.User;
+import org.kevin.dto.User;
 import org.kevin.util.DBUtil;
 
 import java.awt.*;

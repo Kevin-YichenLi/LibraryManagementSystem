@@ -5,25 +5,91 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {comp contentPane::l:::x}"
-			"$verticalGroup": "par l {comp contentPane::l:::x}"
+			"$verticalGroup": "par l {comp contentPane::l::472:x}"
 		} ) {
 			name: "this"
 			"visible": true
 			"title": "add book"
 			"closable": true
+			"iconifiable": true
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space ::238:x, comp label1:::p::p, space :p:142:p}}"
-				"$verticalGroup": "par l {seq t {space ::159:x, comp label1:::p::p, space :p:131:p}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :77:77:p, par l {comp label1:::p::p, comp label2:::p::p, comp label5::l:p::p, comp label3::l:p::p, comp label6::l:p::p, comp label7::l:p::p}}, seq l {space :p:232:p, comp button1:::p::p}, seq l {space :p:130:p, comp button2:::p::p, par l {seq l {space :p:152:p, comp button3:::p::p}, seq l {space :::p, par t:::p {seq {comp novelJrb:::p::p, space :::x, comp textbookJrb:::p::p}, par l {comp titleTxt:::p:189:p, comp authorTxt::l:p:189:p, comp storageNumTxt::l:p:189:p, comp yearOfPublicationTxt::l:p:189:p, comp genreJcb::l:p:145:p}}}}}}, space ::133:x}}"
+				"$verticalGroup": "par l {seq l {space :p:40:p, par b {comp label1::b:p::p, comp titleTxt::b:p::p}, space s:::p, par b {comp label2::b:p::p, comp authorTxt::b:p::p}, space :p:25:p, par b {comp label3::b:p::p, comp storageNumTxt::b:p::p}, space :p:22:p, par b {comp yearOfPublicationTxt::b:p::p, comp label5::b:p::p}, space :p:27:p, par b {comp label6::b:p::p, comp textbookJrb::b:p::p, comp novelJrb::b:p::p}, space :p:19:p, par b {comp label7::b:p::p, comp genreJcb::b:p::p}, space :p:67:p, par b {comp button2::b:p::p, comp button3::b:p::p}, space :p:276:p, comp button1:::p::p, space :::x}}"
 			} ) {
 				name: "contentPane"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"
-					"text": "null"
+					"text": "Title:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Author:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Storage number: "
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Year of publication:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Textbook or novel?"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "Genre:"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Add"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "titleTxt"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "authorTxt"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "storageNumTxt"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "yearOfPublicationTxt"
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "textbookJrb"
+					"text": "Textbook"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+					"selected": true
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "novelJrb"
+					"text": "Novel"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "add"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onAddPressed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "genreJcb"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button3"
+					"text": "reset"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onResetPressed", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 15, 110 )
-			"size": new java.awt.Dimension( 400, 325 )
+			"location": new java.awt.Point( 5, 220 )
+			"size": new java.awt.Dimension( 571, 490 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 726 )
 		} )
 	}
 }

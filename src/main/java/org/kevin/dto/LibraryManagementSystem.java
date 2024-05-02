@@ -1,7 +1,5 @@
 package org.kevin.dto;
 
-import org.kevin.model.User;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

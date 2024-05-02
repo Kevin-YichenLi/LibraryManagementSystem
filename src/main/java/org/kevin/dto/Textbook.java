@@ -3,25 +3,17 @@ package org.kevin.dto;
 import java.util.ArrayList;
 
 public class Textbook extends LibraryItem {
-    private Subject subject;
 
     public Textbook() {
         super();
-        subject = null;
     }
 
-    public Textbook(String title, Genre genre, int yearOfPublication, int storageNum, Subject subject, String author) {
-        super(author, title, genre, yearOfPublication, storageNum);
-        this.subject = subject;
+    public Textbook(String title, int yearOfPublication, int storageNum, String author) {
+        super(author, title, yearOfPublication, storageNum);
     }
 
-    public Subject getSubject() {
-        return subject;
-    }
-
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public int getID() {
+        return id;
     }
 
     public String getAuthor() {
@@ -38,14 +30,6 @@ public class Textbook extends LibraryItem {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
     }
 
     public int getYearOfPublication() {
@@ -74,10 +58,8 @@ public class Textbook extends LibraryItem {
     @Override
     public String toString() {
         return "Textbook{" +
-                "subject=" + subject +
                 ", author='" + author + '\'' +
                 ", title='" + title + '\'' +
-                ", genre=" + genre +
                 ", yearOfPublication=" + yearOfPublication +
                 ", storageNum=" + storageNum +
                 '}';

@@ -1,4 +1,4 @@
-package org.kevin.model;
+package org.kevin.dto;
 
 /**
  * User class

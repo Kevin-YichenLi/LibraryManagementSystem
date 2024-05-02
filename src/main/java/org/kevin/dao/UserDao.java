@@ -1,6 +1,6 @@
 package org.kevin.dao;
 
-import org.kevin.model.User;
+import org.kevin.dto.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
