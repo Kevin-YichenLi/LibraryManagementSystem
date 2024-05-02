@@ -1,0 +1,82 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp contentPane::l:::x}"
+			"$verticalGroup": "par l {seq l {comp contentPane:::p::p, space :0:0:x}}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "edit book"
+			"closable": true
+			"iconifiable": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:53:p, par l {seq {comp textbookJrb:::p::p, space s:::p, comp novelJrb:::p::p, space :p:39:p}, seq t {par t {comp label2:::p::p, comp label3:::p::p}, space s:::p, par l {comp titleTxt:::p:119:p, comp authorTxt:::p:119:p}, space :p:13:p}}, par l {seq {comp label6:::p::p, space u:::p, comp idTxt:::p:41:p}, seq {par l {comp label4:::p::p, seq t {comp label5:::p::p, space :p:30:p}}, par l {comp genreJcb:::p::p, comp yearOfPublicationTxt::l:p:67:p}}}, space ::39:x}, seq t {space ::208:x, comp button1:::p::p, space :p:194:p}}"
+				"$verticalGroup": "par l {seq l {space :p:47:p, par b {comp textbookJrb::b:p::p, comp novelJrb::b:p::p, comp label6::b:p::p, comp idTxt::b:p::p}, space :p:32:p, par b {comp label4::b:p::p, comp titleTxt::b:p::p, comp label3::b:p::p, comp yearOfPublicationTxt::b:p::p}, space :p:37:p, par b {comp genreJcb::b:p::p, comp label5::b:p::p, comp label2::b:p::p, comp authorTxt::b:p::p}, space :p:40:p, comp button1:::p::p, space ::25:x}}"
+			} ) {
+				name: "contentPane"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Author:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Title:"
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "textbookJrb"
+					"text": "Textbook"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+					"selected": true
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "novelJrb"
+					"text": "Novel"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "idTxt"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "titleTxt"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "authorTxt"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "Year of publication:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "yearOfPublicationTxt"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Genre: "
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "genreJcb"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Edit book based on id:"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Edit"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onEditPressed", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 480, 330 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 431 )
+		} )
+	}
+}

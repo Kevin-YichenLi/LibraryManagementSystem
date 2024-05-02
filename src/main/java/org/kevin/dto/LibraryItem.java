@@ -19,5 +19,7 @@ abstract class LibraryItem {
         id = nextId++;
     }
 
-    public LibraryItem() {}
+    public LibraryItem() {
+        id = nextId++;
+    }
 }

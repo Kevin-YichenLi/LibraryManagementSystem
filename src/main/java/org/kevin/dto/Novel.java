@@ -2,7 +2,7 @@ package org.kevin.dto;
 
 import java.util.ArrayList;
 
-public class Novel extends LibraryItem{
+public class Novel extends LibraryItem implements Commentable{
     private Genre genre;
 
     public Novel(String title, Genre genre, int yearOfPublication, int storageNum, String author) {
@@ -64,6 +64,7 @@ public class Novel extends LibraryItem{
         this.storageNum = storageNum;
     }
 
+    @Override
     public ArrayList<String> getComments() {
         return comments;
     }
@@ -83,5 +84,10 @@ public class Novel extends LibraryItem{
                 ", yearOfPublication=" + yearOfPublication +
                 ", storageNum=" + storageNum +
                 '}';
+    }
+
+    @Override
+    public void comment(String comment) {
+
     }
 }

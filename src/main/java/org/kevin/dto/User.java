@@ -9,6 +9,7 @@ public class User {
     private int id;
     private String userName;
     private String password;
+    private boolean isLibrarian;
 
     public User(String userName, String password) {
         this.userName = userName;

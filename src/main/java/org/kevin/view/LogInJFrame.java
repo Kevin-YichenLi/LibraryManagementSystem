@@ -199,11 +199,10 @@ public class LogInJFrame extends JFrame{
             User currentUser = userDao.login(con, user);
             if (currentUser != null) {
                 JOptionPane.showMessageDialog(null, "Log in successfully, welcome!");
-                dispose();;
+                dispose();
                 new MainJFrame();
             } else {
                 JOptionPane.showMessageDialog(null, "wrong user name or password");
-
             }
         } catch (Exception e) {
             e.printStackTrace();

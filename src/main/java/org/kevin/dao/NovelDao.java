@@ -65,14 +65,14 @@ public class NovelDao {
         return preparedStatement.executeUpdate();
     }
 
-    public int update(Connection con, Novel novel) throws Exception {
+    public int update(Connection con, Novel novel, int id) throws Exception {
         String sql = "update t_novel set author=?, yearOfPublication=?, title=?, genre=? where id=?";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, novel.getAuthor());
         preparedStatement.setInt(2, novel.getYearOfPublication());
         preparedStatement.setString(3, novel.getTitle());
         preparedStatement.setString(4, novel.getGenre().name());
-        preparedStatement.setInt(5, novel.getID());
+        preparedStatement.setInt(5, id);
 
         return preparedStatement.executeUpdate();
     }
