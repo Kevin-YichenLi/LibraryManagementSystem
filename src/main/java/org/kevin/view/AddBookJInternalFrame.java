@@ -306,7 +306,7 @@ onAddPressed(e);} catch (Exception ex) {
         genreJcb.addItem("Action");
         genreJcb.addItem("Fantasy");
         genreJcb.addItem("Horror");
-        genreJcb.addItem("Science fiction");
+        genreJcb.addItem("Science-fiction");
         genreJcb.addItem("None, it's a textbook");
     }
     

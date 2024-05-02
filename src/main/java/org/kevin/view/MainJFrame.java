@@ -5,7 +5,6 @@
 package org.kevin.view;
 
 import java.awt.event.*;
-import java.util.Locale;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -32,6 +31,10 @@ public class MainJFrame extends JFrame {
         }
     }
 
+    private void onViewNovelsPressed(ActionEvent e) {
+        desktopPane.add(new ViewNovelsJInternalFrame());
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kevin-Yichen Li
@@ -40,6 +43,8 @@ public class MainJFrame extends JFrame {
         menuItem3 = new JMenuItem();
         menuItem1 = new JMenuItem();
         menuItem5 = new JMenuItem();
+        menu5 = new JMenu();
+        menuItem2 = new JMenuItem();
         menuItem6 = new JMenuItem();
         menu2 = new JMenu();
         menuItem8 = new JMenuItem();
@@ -76,9 +81,20 @@ public class MainJFrame extends JFrame {
                 menuItem5.setText("Edit book");
                 menu1.add(menuItem5);
 
-                //---- menuItem6 ----
-                menuItem6.setText("View books");
-                menu1.add(menuItem6);
+                //======== menu5 ========
+                {
+                    menu5.setText("View books");
+
+                    //---- menuItem2 ----
+                    menuItem2.setText("View textbooks");
+                    menu5.add(menuItem2);
+
+                    //---- menuItem6 ----
+                    menuItem6.setText("View novels");
+                    menuItem6.addActionListener(e -> onViewNovelsPressed(e));
+                    menu5.add(menuItem6);
+                }
+                menu1.add(menu5);
             }
             menuBar1.add(menu1);
 
@@ -125,12 +141,12 @@ public class MainJFrame extends JFrame {
 
         //======== contentPane ========
         {
-            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER
-            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font
-            .BOLD ,12 ), java. awt. Color. red) ,contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er"
-            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+            EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
+            . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
+            java. awt. Color. red) ,contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+            { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
+            throw new RuntimeException( ); }} );
 
             GroupLayout contentPaneLayout = new GroupLayout(contentPane);
             contentPane.setLayout(contentPaneLayout);
@@ -166,6 +182,8 @@ public class MainJFrame extends JFrame {
     private JMenuItem menuItem3;
     private JMenuItem menuItem1;
     private JMenuItem menuItem5;
+    private JMenu menu5;
+    private JMenuItem menuItem2;
     private JMenuItem menuItem6;
     private JMenu menu2;
     private JMenuItem menuItem8;

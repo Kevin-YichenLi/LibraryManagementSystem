@@ -39,21 +39,22 @@ public class NovelDao {
      */
     public ResultSet list(Connection con, Novel novel) throws Exception {
         StringBuffer sb = new StringBuffer("select * from t_novel");
-        if (!novel.getTitle().isEmpty()) {
+        if (novel != null && novel.getTitle() != null && !novel.getTitle().isBlank()) {
             sb.append(" and title like '%"+novel.getTitle()+"%'");
         }
-        if (!novel.getAuthor().isEmpty()) {
+        if (novel != null && novel.getAuthor() != null && !novel.getAuthor().isEmpty()) {
             sb.append(" and author like '%"+novel.getAuthor()+"%'");
         }
-        if (novel.getYearOfPublication() != 0) {
+        if (novel != null && novel.getYearOfPublication() != 0) {
             String yearOfPublicationStr = "" + novel.getYearOfPublication();
             sb.append(" and yearOfPublication like '%"+yearOfPublicationStr+"%'");
         }
-        if (novel.getGenre() != null) {
+        if (novel != null && novel.getGenre() != null) {
             sb.append(" and genre like '%"+novel.getGenre().name()+"%'");
         }
 
-        PreparedStatement preparedStatement = con.prepareStatement(sb.toString().replace("and", "where"));
+        PreparedStatement preparedStatement = con.prepareStatement(sb.toString().replaceFirst("and", "where"));
         return preparedStatement.executeQuery();
     }
+
 }

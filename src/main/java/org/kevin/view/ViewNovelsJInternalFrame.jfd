@@ -1,0 +1,118 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp contentPane::t:::x}"
+			"$verticalGroup": "par l {comp contentPane::l:::x}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "view novels"
+			"iconifiable": true
+			"closable": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space ::34:x, par l {comp scrollPane1:::p:538:p, comp panel1:::::x}, space ::43:x}}"
+				"$verticalGroup": "par l {seq t {space :p:16:p, comp panel1:::p::p, space ::42:x, comp scrollPane1:::p:248:p, space :p:14:p}}"
+			} ) {
+				name: "contentPane"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table"
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+								add( "" )
+								add( "" )
+								add( null )
+								add( null )
+							} )
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+							} )
+						}, new java.util.Vector {
+							add( "ID" )
+							add( "Author" )
+							add( "Storage number" )
+							add( "Year of publication" )
+							add( "Title" )
+							add( "Genre" )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+						}, new java.util.Vector {
+							add( new com.jformdesigner.model.SwingTableColumn( null, 40, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 130, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 120, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 120, 0, 0, true ) )
+						} )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:29:p, par t {comp label1:::p::p, comp label3:::p::p}, space u:::p, par l:::p {seq {comp titleTxt:::p:143:p, space :p:20:p, comp label2:::p::p}, seq {comp yearOfPublicationTxt:::p:143:p, space :::x, comp label4:::p::p}}, space s:::p, par l {comp authorTxt:::p:143:p, comp genreJbc:::::x}, space u:::p, comp button1:::p:64:p, space :p:17:p}}"
+					"$verticalGroup": "par l {seq {par l {seq {space :p:9:p, par b {comp label1::b:p::p, comp label2::b:p::p, comp authorTxt::b:p::p, comp titleTxt::b:p::p}, space s:::p, par b {comp label3::b:p::p, comp yearOfPublicationTxt::b:p::p, comp label4::b:p::p, comp genreJbc::b:p::p}}, seq l {space :p:32:p, comp button1:::p::p}}, space ::10:x}}"
+				} ) {
+					name: "panel1"
+					"border": new javax.swing.border.TitledBorder( "Searching conditions" )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "Title:"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "author:"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "authorTxt"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "titleTxt"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "Year:"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "yearOfPublicationTxt"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Genre:"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button1"
+						"text": "Search"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onSearchPressed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "genreJbc"
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 35 )
+			"size": new java.awt.Dimension( 615, 460 )
+		} )
+	}
+}

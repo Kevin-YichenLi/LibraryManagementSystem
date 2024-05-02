@@ -10,6 +10,13 @@ public class Novel extends LibraryItem{
         this.genre = genre;
     }
 
+    public Novel(String title, int yearOfPublication, Genre genre, String author) {
+        this.title = title;
+        this.yearOfPublication = yearOfPublication;
+        this.genre = genre;
+        this.author = author;
+    }
+
     public Novel() {
         super();
     }

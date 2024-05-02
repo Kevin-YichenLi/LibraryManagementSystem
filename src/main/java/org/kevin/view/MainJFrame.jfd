@@ -36,9 +36,18 @@ new FormModel {
 						name: "menuItem5"
 						"text": "Edit book"
 					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem6"
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu5"
 						"text": "View books"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem2"
+							"text": "View textbooks"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem6"
+							"text": "View novels"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onViewNovelsPressed", true ) )
+						} )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
