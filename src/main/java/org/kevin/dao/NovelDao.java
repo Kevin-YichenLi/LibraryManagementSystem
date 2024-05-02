@@ -57,4 +57,24 @@ public class NovelDao {
         return preparedStatement.executeQuery();
     }
 
+    public int delete(Connection con, int id) throws Exception {
+        String sql = "delete from t_novel where id=?";
+
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeUpdate();
+    }
+
+    public int update(Connection con, Novel novel) throws Exception {
+        String sql = "update t_novel set author=?, yearOfPublication=?, title=?, genre=? where id=?";
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setString(1, novel.getAuthor());
+        preparedStatement.setInt(2, novel.getYearOfPublication());
+        preparedStatement.setString(3, novel.getTitle());
+        preparedStatement.setString(4, novel.getGenre().name());
+        preparedStatement.setInt(5, novel.getID());
+
+        return preparedStatement.executeUpdate();
+    }
+
 }

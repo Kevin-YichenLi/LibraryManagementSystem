@@ -1,0 +1,54 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp contentPane::l:::x}"
+			"$verticalGroup": "par l {comp contentPane::l:::x}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "delete book"
+			"iconifiable": true
+			"closable": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:22:p, comp label1:::p::p}, seq l {space :p:62:p, comp textbookJrb:::p::p, space :p:32:p, comp novelJrb:::p::p}, seq l {space :p:118:p, par l {comp idTxt:::p:75:p, comp button1:::p::p}}}, space ::25:x}}"
+				"$verticalGroup": "par l {seq l {space :p:33:p, par b {comp textbookJrb::b:p::p, comp novelJrb::b:p::p}, space :p:26:p, comp label1:::p::p, space :p:25:p, comp idTxt:::p::p, space s:::p, comp button1:::p::p, space ::32:x}}"
+			} ) {
+				name: "contentPane"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Please provide the book ID you wish to delete."
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "idTxt"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Delete"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onDeletePressed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "textbookJrb"
+					"text": "Textbook"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+					"selected": true
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "novelJrb"
+					"text": "Novel"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 320, 250 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 266 )
+		} )
+	}
+}

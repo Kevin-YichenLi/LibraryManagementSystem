@@ -59,7 +59,7 @@ public class AddBookJInternalFrame extends JInternalFrame {
 
         Genre genre = null;
         if (!genreJcb.getSelectedItem().toString().equals("None, it's a textbook")) {
-            genre = Genre.valueOf(genreJcb.getSelectedItem().toString().toUpperCase());
+            genre = Genre.valueOf(genreJcb.getSelectedItem().toString().replace('-', '_').toUpperCase());
         }
 
         if (type.equals("textbook")) {
