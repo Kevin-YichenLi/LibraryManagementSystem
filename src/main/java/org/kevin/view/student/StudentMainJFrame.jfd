@@ -4,13 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp contentPane::l:::x}"
+			"$horizontalGroup": "par l {seq l {comp contentPane:::p::p, space :0:0:x}}"
 			"$verticalGroup": "par l {comp contentPane::l:::x}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {comp desktopPane::l::648:x}"
-				"$verticalGroup": "par l {seq t {space :0:0:x, comp desktopPane:::p:412:p}}"
+				"$verticalGroup": "par l {comp desktopPane::l::382:x}"
 			} ) {
 				name: "contentPane"
 				add( new FormContainer( "javax.swing.JDesktopPane", new FormLayoutManager( class javax.swing.JDesktopPane ) ) {
@@ -33,19 +33,17 @@ new FormModel {
 							name: "menuItem6"
 							"text": "View novels"
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onViewNovelsPressed", true ) )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onViewNovelsPressed", true ) )
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem1"
 						"text": "Comment book"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onCommentPressed", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem3"
 						"text": "View comments"
-					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem8"
-						"text": "Recommendations for you"
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -58,10 +56,6 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem5"
 						"text": "Return book"
-					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem9"
-						"text": "History"
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -76,7 +70,7 @@ new FormModel {
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 90, 40 )
-			"size": new java.awt.Dimension( 650, 465 )
+			"size": new java.awt.Dimension( 650, 435 )
 		} )
 	}
 }

@@ -1,8 +1,9 @@
 package org.kevin.dto;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class Textbook extends LibraryItem implements Commentable{
+public class Textbook extends LibraryItem implements Commentable, Rateble {
 
     public Textbook() {
         super();
@@ -68,6 +69,40 @@ public class Textbook extends LibraryItem implements Commentable{
 
     @Override
     public void comment(String comment) {
+        comments.add(comment);
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public void rate(int rate) {
+        rates.add(rate);
+    }
+
+    @Override
+    public int averageRate() {
+        int average = 0;
+        for (Integer rate : rates) {
+            average += rate;
+        }
+
+        average = average / rates.size();
+        return average;
     }
 }

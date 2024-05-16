@@ -1,8 +1,9 @@
 package org.kevin.dto;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Novel extends LibraryItem implements Commentable{
+public class Novel extends LibraryItem implements Commentable, Rateble{
     private Genre genre;
 
     public Novel(String title, Genre genre, int yearOfPublication, int storageNum, String author) {
@@ -21,15 +22,20 @@ public class Novel extends LibraryItem implements Commentable{
         super();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getAuthor() {
         return author;
     }
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-    public int getID() {
-        return id;
     }
 
     public String getTitle() {
@@ -73,7 +79,19 @@ public class Novel extends LibraryItem implements Commentable{
         this.comments = comments;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Novel novel = (Novel) o;
+        return genre == novel.genre;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), genre);
+    }
 
     @Override
     public String toString() {
@@ -88,6 +106,22 @@ public class Novel extends LibraryItem implements Commentable{
 
     @Override
     public void comment(String comment) {
+        comments.add(comment);
+    }
 
+    @Override
+    public void rate(int rate) {
+        rates.add(rate);
+    }
+
+    @Override
+    public int averageRate() {
+        int average = 0;
+        for (Integer rate : rates) {
+            average += rate;
+        }
+
+        average = average / rates.size();
+        return average;
     }
 }

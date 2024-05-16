@@ -6,6 +6,7 @@ package org.kevin.view.librarian;
 
 import java.awt.event.*;
 
+import org.kevin.Books;
 import org.kevin.dao.NovelDao;
 import org.kevin.dao.TextbookDao;
 import org.kevin.dto.Genre;
@@ -16,6 +17,9 @@ import org.kevin.util.DBUtil;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * @author kevin
@@ -83,6 +87,24 @@ public class AddBookJInternalFrame extends JInternalFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Add book failed");
             }
+
+            if (type.equals("textbook")) {
+                // lacking codes here
+
+
+                Books.textbooks.add(textbook);
+            } else {
+                ResultSet rs = novelDao.list(con, new Novel());
+
+                while (rs.next()) {
+                    if (novel.getTitle().equals(rs.getString("title"))) {
+                        novel.setId(Integer.parseInt(rs.getString("id")));
+                        break;
+                    }
+                }
+                Books.novels.add(novel);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

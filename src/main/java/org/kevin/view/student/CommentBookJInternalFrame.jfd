@@ -1,0 +1,72 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
+			name: "this"
+			"visible": true
+			"closable": true
+			"iconifiable": true
+			"maximizable": true
+			"title": "Comment book"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq {space :p:66:p, par l {seq l {par l {comp label1:::p::p, comp label3:::p::p}, space :p:26:p, par l {comp idTxt:::p:41:p, comp ratingTxt:::p:41:p}}, comp scrollPane1::l:p:421:p, comp label2::l:p::p}}, seq l {space :p:247:p, comp button1:::p::p}, seq l {space :p:122:p, comp textbookJrb:::p::p, space :p:96:p, comp novelJrb:::p::p}}, space ::103:x}}"
+				"$verticalGroup": "par l {seq l {space ::37:x, par b {comp label3::b:p::p, comp ratingTxt::b:p::p}, space s:::p, par b {comp label1::b:p::p, comp idTxt::b:p::p}, space s:::p, par b {comp textbookJrb::b:p::p, comp novelJrb::b:p::p}, space :p:23:p, comp label2:::p::p, space u:::p, comp scrollPane1:::p:200:p, space s:::p, comp button1:::p::p, space :p:18:p}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Enter the book id you want to comment on: "
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "idTxt"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Write your comment:"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Comment"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onCommentPressed", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "commentArea"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Enter a rating from 1 to 5:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "ratingTxt"
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "textbookJrb"
+					"text": "Textbook"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "novelJrb"
+					"text": "Novel"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+					"selected": true
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 100, 10 )
+			"size": new java.awt.Dimension( 590, 490 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 516 )
+		} )
+	}
+}

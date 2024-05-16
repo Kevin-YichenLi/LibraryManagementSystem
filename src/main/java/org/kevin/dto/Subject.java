@@ -1,5 +1,0 @@
-package org.kevin.dto;
-
-public enum Subject {
-    MATH, FRENCH, ENGLISH, HUMANITY, PHILOSOPHY, ART, PHYSICAL_EDUCATION, SCIENCE, COMMERCE
-}

@@ -1,5 +1,8 @@
 package org.kevin.dto;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 /**
  * User class
  *

@@ -4,6 +4,8 @@
 
 package org.kevin.view.student;
 
+import org.kevin.view.librarian.ViewNovelsJInternalFrame;
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -17,10 +19,22 @@ public class StudentMainJFrame extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setContentPane(contentPane);
     }
 
     private void onQuitPressed(ActionEvent e) {
-        // TODO add your code here
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure to quit?");
+        if (result == 0) {
+            dispose();
+        }
+    }
+
+    private void onViewNovelsPressed(ActionEvent e) {
+        desktopPane.add(new ViewNovelsJInternalFrame());
+    }
+
+    private void onCommentPressed(ActionEvent e) {
+        desktopPane.add(new CommentBookJInternalFrame());
     }
 
     private void initComponents() {
@@ -33,11 +47,9 @@ public class StudentMainJFrame extends JFrame {
         menuItem6 = new JMenuItem();
         menuItem1 = new JMenuItem();
         menuItem3 = new JMenuItem();
-        menuItem8 = new JMenuItem();
         menu3 = new JMenu();
         menuItem7 = new JMenuItem();
         menuItem5 = new JMenuItem();
-        menuItem9 = new JMenuItem();
         menu4 = new JMenu();
         menuItem4 = new JMenuItem();
         contentPane = new JPanel();
@@ -63,21 +75,21 @@ public class StudentMainJFrame extends JFrame {
 
                     //---- menuItem6 ----
                     menuItem6.setText("View novels");
+                    menuItem6.addActionListener(e -> {
+			onViewNovelsPressed(e);
+		});
                     menu5.add(menuItem6);
                 }
                 menu1.add(menu5);
 
                 //---- menuItem1 ----
                 menuItem1.setText("Comment book");
+                menuItem1.addActionListener(e -> onCommentPressed(e));
                 menu1.add(menuItem1);
 
                 //---- menuItem3 ----
                 menuItem3.setText("View comments");
                 menu1.add(menuItem3);
-
-                //---- menuItem8 ----
-                menuItem8.setText("Recommendations for you");
-                menu1.add(menuItem8);
             }
             menuBar1.add(menu1);
 
@@ -92,10 +104,6 @@ public class StudentMainJFrame extends JFrame {
                 //---- menuItem5 ----
                 menuItem5.setText("Return book");
                 menu3.add(menuItem5);
-
-                //---- menuItem9 ----
-                menuItem9.setText("History");
-                menu3.add(menuItem9);
             }
             menuBar1.add(menu3);
 
@@ -114,13 +122,11 @@ public class StudentMainJFrame extends JFrame {
 
         //======== contentPane ========
         {
-            contentPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
-            .swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing
-            .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
-            Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red
-            ),contentPane. getBorder()));contentPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
-            public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName(
-            )))throw new RuntimeException();}});
+            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
+            0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
+            . BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
+            red) ,contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
+            beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
 
             GroupLayout contentPaneLayout = new GroupLayout(contentPane);
             contentPane.setLayout(contentPaneLayout);
@@ -130,9 +136,7 @@ public class StudentMainJFrame extends JFrame {
             );
             contentPaneLayout.setVerticalGroup(
                 contentPaneLayout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 412, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
             );
         }
 
@@ -140,7 +144,9 @@ public class StudentMainJFrame extends JFrame {
         contentPane2.setLayout(contentPane2Layout);
         contentPane2Layout.setHorizontalGroup(
             contentPane2Layout.createParallelGroup()
-                .addComponent(contentPane, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPane2Layout.createSequentialGroup()
+                    .addComponent(contentPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         contentPane2Layout.setVerticalGroup(
             contentPane2Layout.createParallelGroup()
@@ -160,14 +166,16 @@ public class StudentMainJFrame extends JFrame {
     private JMenuItem menuItem6;
     private JMenuItem menuItem1;
     private JMenuItem menuItem3;
-    private JMenuItem menuItem8;
     private JMenu menu3;
     private JMenuItem menuItem7;
     private JMenuItem menuItem5;
-    private JMenuItem menuItem9;
     private JMenu menu4;
     private JMenuItem menuItem4;
     private JPanel contentPane;
     private JDesktopPane desktopPane;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    public static void main(String[] args) {
+        new StudentMainJFrame();
+    }
 }
