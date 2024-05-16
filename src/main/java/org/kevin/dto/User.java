@@ -9,7 +9,13 @@ public class User {
     private int id;
     private String userName;
     private String password;
-    private boolean isLibrarian;
+    private String status;
+
+    public User(String userName, String password, String status) {
+        this.userName = userName;
+        this.password = password;
+        this.status = status;
+    }
 
     public User(String userName, String password) {
         this.userName = userName;
@@ -18,8 +24,12 @@ public class User {
 
     public User() {};
 
-    public int getId() {
-        return id;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setId(int id) {

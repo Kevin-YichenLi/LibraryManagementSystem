@@ -1,0 +1,72 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp contentPane::l:::x}"
+			"$verticalGroup": "par l {comp contentPane::l:::x}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "Add User"
+			"iconifiable": true
+			"closable": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:70:p, par t {comp label4:::p::p, comp label3:::p::p, comp label2:::p::p, comp label1:::p::p}, space :p:48:p, par l:::p {seq {comp librarianJrb:::p::p, space :p:32:p, comp studentJrb:::p::p}, comp userNameTxt:::::x, comp passwordTxt:::::x, comp passwordConfirmTxt:::::x}}, seq l {space :p:273:p, comp button1:::p::p}}, space ::178:x}}"
+				"$verticalGroup": "par l {seq {space :p:78:p, par b {comp librarianJrb::b:p::p, comp studentJrb::b:p::p, comp label1::b:p::p}, space :p:40:p, par l {comp label2:::p::p, comp userNameTxt:::p::p}, space :p:44:p, par b {comp label3::b:p::p, comp passwordTxt::b:p::p}, space :p:36:p, par b {comp label4::b:p::p, comp passwordConfirmTxt::b:p::p}, space ::60:x, comp button1:::p::p, space :p:53:p}}"
+			} ) {
+				name: "contentPane"
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "librarianJrb"
+					"text": "Librarian"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "studentJrb"
+					"text": "Student"
+					"$buttonGroup": new FormReference( "buttonGroup1" )
+					"selected": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "User type:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "User name:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Password:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "userNameTxt"
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "passwordTxt"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "Please confirm the password:"
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "passwordConfirmTxt"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "Add"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onAddPressed", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 65, 35 )
+			"size": new java.awt.Dimension( 640, 470 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 521 )
+		} )
+	}
+}
