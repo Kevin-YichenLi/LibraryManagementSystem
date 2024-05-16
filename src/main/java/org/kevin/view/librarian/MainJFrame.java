@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Mon Apr 29 23:02:33 EDT 2024
  */
 
-package org.kevin.view;
+package org.kevin.view.librarian;
 
 import java.awt.event.*;
 import javax.swing.*;
@@ -45,6 +45,10 @@ public class MainJFrame extends JFrame {
 
     private void onAddUserPressed(ActionEvent e) {
         desktopPane.add(new AddUsersJInternalFrame());
+    }
+
+    private void onViewUsersPressed(ActionEvent e) {
+        desktopPane.add(new ViewUsersJInternalFrame());
     }
 
     private void initComponents() {
@@ -122,6 +126,7 @@ public class MainJFrame extends JFrame {
 
                 //---- menuItem10 ----
                 menuItem10.setText("View users");
+                menuItem10.addActionListener(e -> onViewUsersPressed(e));
                 menu2.add(menuItem10);
             }
             menuBar1.add(menu2);
@@ -151,13 +156,12 @@ public class MainJFrame extends JFrame {
 
         //======== contentPane ========
         {
-            contentPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
-            javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax
-            .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
-            .awt.Font("D\u0069alog",java.awt.Font.BOLD,12),java.awt
-            .Color.red),contentPane. getBorder()));contentPane. addPropertyChangeListener(new java.beans.
-            PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order".
-            equals(e.getPropertyName()))throw new RuntimeException();}});
+            contentPane.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
+            ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
+            .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt
+            . Color .red ) ,contentPane. getBorder () ) ); contentPane. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
+            propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+            ;} } );
 
             GroupLayout contentPaneLayout = new GroupLayout(contentPane);
             contentPane.setLayout(contentPaneLayout);

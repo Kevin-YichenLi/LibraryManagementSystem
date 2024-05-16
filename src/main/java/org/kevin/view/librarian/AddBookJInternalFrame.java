@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Mon Apr 29 23:55:08 EDT 2024
  */
 
-package org.kevin.view;
+package org.kevin.view.librarian;
 
 import java.awt.event.*;
 

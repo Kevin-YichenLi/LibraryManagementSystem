@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Thu May 02 00:39:41 EDT 2024
  */
 
-package org.kevin.view;
+package org.kevin.view.librarian;
 
 import java.awt.event.*;
 import org.kevin.dao.NovelDao;
@@ -16,6 +16,7 @@ import javax.swing.border.*;
 import javax.swing.table.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -264,14 +265,14 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
             con = dbUtil.getCon();
             ResultSet resultSet = novelDao.list(con, novel);
             while (resultSet.next()) {
-                Vector v = new Vector();
-                v.add(resultSet.getString("id"));
-                v.add(resultSet.getString("author"));
-                v.add(resultSet.getString("storageNum"));
-                v.add(resultSet.getString("yearOfPublication"));
-                v.add(resultSet.getString("title"));
-                v.add(resultSet.getString("genre"));
-                defaultTableModel.addRow(v);
+                ArrayList<String> rowData = new ArrayList<>();
+                rowData.add(resultSet.getString("id"));
+                rowData.add(resultSet.getString("author"));
+                rowData.add(resultSet.getString("storageNum"));
+                rowData.add(resultSet.getString("yearOfPublication"));
+                rowData.add(resultSet.getString("title"));
+                rowData.add(resultSet.getString("genre"));
+                defaultTableModel.addRow(rowData.toArray());
             }
         } catch (Exception e) {
             e.printStackTrace();

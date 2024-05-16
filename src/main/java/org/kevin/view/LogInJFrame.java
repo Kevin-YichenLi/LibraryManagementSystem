@@ -4,10 +4,11 @@
 
 package org.kevin.view;
 
-import org.kevin.dao.NovelDao;
 import org.kevin.dao.UserDao;
 import org.kevin.dto.User;
 import org.kevin.util.DBUtil;
+import org.kevin.view.librarian.MainJFrame;
+import org.kevin.view.student.StudentMainJFrame;
 
 import java.awt.*;
 import java.awt.event.*;

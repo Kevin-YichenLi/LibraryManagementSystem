@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed May 15 17:03:51 EDT 2024
  */
 
-package org.kevin.view;
+package org.kevin.view.student;
 
 import javax.swing.*;
 import javax.swing.GroupLayout;

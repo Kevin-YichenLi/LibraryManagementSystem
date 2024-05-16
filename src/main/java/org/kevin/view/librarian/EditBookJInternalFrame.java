@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Thu May 02 13:32:12 EDT 2024
  */
 
-package org.kevin.view;
+package org.kevin.view.librarian;
 
 import org.kevin.dao.NovelDao;
 import org.kevin.dto.Genre;

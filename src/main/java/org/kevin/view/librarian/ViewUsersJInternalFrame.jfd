@@ -1,0 +1,93 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:32:p, comp contentPane:::p::p, space ::24:x}, seq t {space ::86:x, comp scrollPane1:::p:538:p, space :p:81:p}}"
+			"$verticalGroup": "par l {seq l {comp contentPane:::::x, space :::p, comp scrollPane1:::p:248:p, space :p:21:p}}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "View users"
+			"iconifiable": true
+			"maximizable": true
+			"closable": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:40:p, comp panel1:::::x, space :p:32:p}}"
+				"$verticalGroup": "par l {seq t {space ::42:x, comp panel1:::p::p, space :p:23:p}}"
+			} ) {
+				name: "contentPane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:27:p, comp label1:::p::p, space s:::p, comp userNameTxt:::p:128:p, space s:::p, comp label4:::p::p, space s:::p, comp statusJbc::::155:x, space s:::p, comp button1:::p:64:p, space :p:17:p}}"
+					"$verticalGroup": "par l {seq {space ::20:x, comp label1:::p::p, space :p:36:p}, seq {space :p:17:p, par b {comp statusJbc::b:p::p, comp label4::b:p::p, comp userNameTxt::b:p::p, comp button1::b:p::p}, space :0:25:x}}"
+				} ) {
+					name: "panel1"
+					"border": new javax.swing.border.TitledBorder( "Searching conditions" )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "User name:"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Status:"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button1"
+						"text": "Search"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onSearchPressed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "statusJbc"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "userNameTxt"
+					} )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( "" )
+							add( "" )
+							add( "" )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "ID" )
+						add( "User name" )
+						add( "Password" )
+						add( "Status" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( false )
+						add( false )
+						add( false )
+						add( false )
+					}, new java.util.Vector {
+						add( new com.jformdesigner.model.SwingTableColumn( null, 40, 0, 0, true ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 145, 0, 0, true ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 145, 0, 0, true ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 95, 0, 0, true ) )
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 45, 40 )
+			"size": new java.awt.Dimension( 705, 455 )
+		} )
+	}
+}

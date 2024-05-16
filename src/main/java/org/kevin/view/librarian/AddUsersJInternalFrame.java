@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed May 15 17:39:42 EDT 2024
  */
 
-package org.kevin.view;
+package org.kevin.view.librarian;
 
 import org.kevin.dao.UserDao;
 import org.kevin.dto.User;
