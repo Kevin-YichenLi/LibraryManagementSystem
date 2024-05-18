@@ -3,7 +3,7 @@ package org.kevin.dto;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class Textbook extends LibraryItem implements Commentable, Rateble {
+public class Textbook extends LibraryItem {
 
     public Textbook() {
         super();
@@ -11,6 +11,10 @@ public class Textbook extends LibraryItem implements Commentable, Rateble {
 
     public Textbook(String title, int yearOfPublication, int storageNum, String author) {
         super(author, title, yearOfPublication, storageNum);
+    }
+
+    public Textbook(int id, String author, String title, int yearOfPublication, int storageNum) {
+        super(id, author, title, yearOfPublication, storageNum);
     }
 
     public int getID() {
@@ -50,14 +54,6 @@ public class Textbook extends LibraryItem implements Commentable, Rateble {
     }
 
     @Override
-    public ArrayList<String> getComments() {
-        return comments;
-    }
-
-    public void setComments(ArrayList<String> comments) {
-        this.comments = comments;
-    }
-    @Override
     public String toString() {
         return "Textbook{" +
                 ", author='" + author + '\'' +
@@ -65,11 +61,6 @@ public class Textbook extends LibraryItem implements Commentable, Rateble {
                 ", yearOfPublication=" + yearOfPublication +
                 ", storageNum=" + storageNum +
                 '}';
-    }
-
-    @Override
-    public void comment(String comment) {
-        comments.add(comment);
     }
 
     public int getId() {
@@ -88,21 +79,5 @@ public class Textbook extends LibraryItem implements Commentable, Rateble {
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
-    }
-
-    @Override
-    public void rate(int rate) {
-        rates.add(rate);
-    }
-
-    @Override
-    public int averageRate() {
-        int average = 0;
-        for (Integer rate : rates) {
-            average += rate;
-        }
-
-        average = average / rates.size();
-        return average;
     }
 }

@@ -4,23 +4,15 @@
 
 package org.kevin.view.student;
 
-import org.kevin.Books;
 import org.kevin.dao.NovelDao;
-import org.kevin.dao.UserDao;
 import org.kevin.dto.Novel;
-import org.kevin.dto.User;
 import org.kevin.util.DBUtil;
-import org.kevin.view.librarian.AddBookJInternalFrame;
 
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.HashSet;
-import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.GroupLayout;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  * @author kevin
@@ -61,7 +53,6 @@ public class CommentBookJInternalFrame extends JInternalFrame {
         if (textbookJrb.isSelected()) {
             // lack codes for textbook
         } else {
-            Novel novel = null;
             Connection con = null;
             try {
                 con = dbUtil.getCon();
@@ -73,15 +64,8 @@ public class CommentBookJInternalFrame extends JInternalFrame {
                     if (id.equals(currentId)) {
                         flag = true;
 
-                        for (Novel novel1 : Books.novels) {
-                            if (novel1.getId() == Integer.parseInt(currentId)) {
-                                Books.novels.remove(novel1);
-                                novel1.comment(comment);
-                                novel1.rate(rating);
-                                Books.novels.add(novel1);
-                                break;
-                            }
-                        }
+                        novelDao.comment(con, comment, Integer.parseInt(id));
+                        novelDao.rate(con, rating, Integer.parseInt(id));
 
                         JOptionPane.showMessageDialog(null, "comment successfully");
                         break;

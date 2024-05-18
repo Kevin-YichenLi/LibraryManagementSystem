@@ -8,22 +8,24 @@ abstract class LibraryItem {
     protected String title;
     protected int yearOfPublication;
     protected int storageNum;
-    protected ArrayList<String> comments;
     protected int id;
-    protected ArrayList<Integer> rates;
 
     public LibraryItem(String author, String title, int yearOfPublication, int storageNum) {
         this.title = title;
         this.yearOfPublication = yearOfPublication;
         this.storageNum = storageNum;
         this.author = author;
-        comments = new ArrayList<>();
-        rates = new ArrayList<>();
+    }
+
+    public LibraryItem(int id, String author, String title, int yearOfPublication, int storageNum) {
+        this.title = title;
+        this.yearOfPublication = yearOfPublication;
+        this.storageNum = storageNum;
+        this.author = author;
+        this.id = id;
     }
 
     public LibraryItem() {
-        comments = new ArrayList<>();
-        rates = new ArrayList<>();
     }
 
     @Override
@@ -32,11 +34,11 @@ abstract class LibraryItem {
         if (o == null || getClass() != o.getClass()) return false;
         LibraryItem that = (LibraryItem) o;
         return yearOfPublication == that.yearOfPublication && storageNum == that.storageNum && id == that.id &&
-                Objects.equals(author, that.author) && Objects.equals(title, that.title) && Objects.equals(comments, that.comments);
+                Objects.equals(author, that.author) && Objects.equals(title, that.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(author, title, yearOfPublication, storageNum, comments, id);
+        return Objects.hash(author, title, yearOfPublication, storageNum, id);
     }
 }

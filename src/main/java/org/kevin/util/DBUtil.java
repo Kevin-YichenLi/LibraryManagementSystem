@@ -1,7 +1,12 @@
 package org.kevin.util;
 
+import org.kevin.dao.NovelDao;
+import org.kevin.dto.Genre;
+import org.kevin.dto.Novel;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 /**
  * Connect to database
@@ -22,6 +27,7 @@ public class DBUtil {
 
     /**
      * close connection with database
+     *
      * @param con
      * @throws Exception
      */

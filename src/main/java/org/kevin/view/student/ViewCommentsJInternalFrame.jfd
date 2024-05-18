@@ -1,0 +1,49 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {par l {seq {space :p:60:p, comp textbookJrb:::p::p}, seq l {space :p:42:p, comp label1:::p::p}}, space :p:41:p, par l {comp idTxt:::p:37:p, comp novelJrb:::p::p}}, seq l {space :p:88:p, comp button1:::p::p}}, space ::68:x}}"
+			"$verticalGroup": "par l {seq l {space :p:50:p, par b {comp textbookJrb::b:p::p, comp novelJrb::b:p::p}, space s:::p, par b {comp idTxt::b:p::p, comp label1::b:p::p}, space :p:46:p, comp button1:::p::p, space ::42:x}}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "View comments"
+			"iconifiable": true
+			"maximizable": true
+			"closable": true
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Enter the book id:"
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "textbookJrb"
+				"text": "textbook"
+				"$buttonGroup": new FormReference( "buttonGroup1" )
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "novelJrb"
+				"text": "novel"
+				"$buttonGroup": new FormReference( "buttonGroup1" )
+				"selected": true
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "idTxt"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "View comments"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onViewCommentsPressed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 60, 20 )
+			"size": new java.awt.Dimension( 310, 255 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 366 )
+		} )
+	}
+}

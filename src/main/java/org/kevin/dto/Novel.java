@@ -3,11 +3,16 @@ package org.kevin.dto;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Novel extends LibraryItem implements Commentable, Rateble{
+public class Novel extends LibraryItem{
     private Genre genre;
 
     public Novel(String title, Genre genre, int yearOfPublication, int storageNum, String author) {
         super(author, title, yearOfPublication, storageNum);
+        this.genre = genre;
+    }
+
+    public Novel(int id, String author, String title, int yearOfPublication, int storageNum, Genre genre) {
+        super(id, author, title, yearOfPublication, storageNum);
         this.genre = genre;
     }
 
@@ -71,15 +76,6 @@ public class Novel extends LibraryItem implements Commentable, Rateble{
     }
 
     @Override
-    public ArrayList<String> getComments() {
-        return comments;
-    }
-
-    public void setComments(ArrayList<String> comments) {
-        this.comments = comments;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -102,26 +98,5 @@ public class Novel extends LibraryItem implements Commentable, Rateble{
                 ", yearOfPublication=" + yearOfPublication +
                 ", storageNum=" + storageNum +
                 '}';
-    }
-
-    @Override
-    public void comment(String comment) {
-        comments.add(comment);
-    }
-
-    @Override
-    public void rate(int rate) {
-        rates.add(rate);
-    }
-
-    @Override
-    public int averageRate() {
-        int average = 0;
-        for (Integer rate : rates) {
-            average += rate;
-        }
-
-        average = average / rates.size();
-        return average;
     }
 }

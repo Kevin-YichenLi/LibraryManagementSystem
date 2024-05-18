@@ -1,5 +1,6 @@
 package org.kevin;
 
+import org.kevin.util.DBUtil;
 import org.kevin.view.LogInJFrame;
 
 import java.util.Locale;

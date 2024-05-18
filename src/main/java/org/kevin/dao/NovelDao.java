@@ -10,7 +10,7 @@ import java.sql.ResultSet;
  * Novel Dao class
  * @author Kevin-Yichen Li
  */
-public class NovelDao {
+public class NovelDao implements Commentable {
 
     /**
      * add novel to database
@@ -77,4 +77,37 @@ public class NovelDao {
         return preparedStatement.executeUpdate();
     }
 
+    public int comment(Connection con, String comment, int id) throws Exception {
+        String sql = "update t_novel set comments=? where id=?";
+
+        ResultSet rs = list(con, new Novel());
+        String originalComment = "";
+        while (rs.next()) {
+            if (rs.getString("comments") != null && rs.getString("id").equals(id + "")) {
+                originalComment += rs.getString("comments");
+            }
+        }
+
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setString(1, originalComment + comment + "~");
+        preparedStatement.setInt(2, id);
+        return preparedStatement.executeUpdate();
+    }
+
+    public int rate(Connection con, double rating, int id) throws Exception {
+        String sql = "update t_novel set rating=? where id=?";
+
+        double originalRating = 0;
+        ResultSet rs = list(con, new Novel());
+        while (rs.next()) {
+            if (rs.getString("rating") != null && rs.getString("id") .equals(id + "")) {
+                originalRating += Double.parseDouble(rs.getString("rating"));
+            }
+        }
+
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setDouble(1, rating + originalRating);
+        preparedStatement.setInt(2, id);
+        return preparedStatement.executeUpdate();
+    }
 }

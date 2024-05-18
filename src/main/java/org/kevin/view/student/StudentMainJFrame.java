@@ -37,6 +37,10 @@ public class StudentMainJFrame extends JFrame {
         desktopPane.add(new CommentBookJInternalFrame());
     }
 
+    private void onViewCommentsPressed(ActionEvent e) {
+        desktopPane.add(new ViewCommentsJInternalFrame(this));
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Kevin-Yichen Li
@@ -89,6 +93,7 @@ public class StudentMainJFrame extends JFrame {
 
                 //---- menuItem3 ----
                 menuItem3.setText("View comments");
+                menuItem3.addActionListener(e -> onViewCommentsPressed(e));
                 menu1.add(menuItem3);
             }
             menuBar1.add(menu1);
@@ -122,11 +127,12 @@ public class StudentMainJFrame extends JFrame {
 
         //======== contentPane ========
         {
-            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-            0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-            . BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-            red) ,contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-            beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+            EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
+            . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
+            java. awt. Color. red) ,contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+            { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
+            throw new RuntimeException( ); }} );
 
             GroupLayout contentPaneLayout = new GroupLayout(contentPane);
             contentPane.setLayout(contentPaneLayout);
@@ -174,6 +180,9 @@ public class StudentMainJFrame extends JFrame {
     private JPanel contentPane;
     private JDesktopPane desktopPane;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+    public void addJInternalFrame(JInternalFrame jInternalFrame) {
+        desktopPane.add(jInternalFrame);
+    }
 
     public static void main(String[] args) {
         new StudentMainJFrame();

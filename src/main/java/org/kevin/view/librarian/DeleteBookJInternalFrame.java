@@ -35,7 +35,6 @@ public class DeleteBookJInternalFrame extends JInternalFrame {
         if (textbookJrb.isSelected()) {
 
         } else {
-            Novel novel = null;
             Connection con = null;
             try {
                 con = dbUtil.getCon();

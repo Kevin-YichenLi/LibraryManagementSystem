@@ -1,0 +1,44 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:174:p, comp label1:::p::p, space :p:29:p, comp ratingTxt:::p:75:p, space ::213:x}, seq t {space ::58:x, par l:::p {seq {comp button1:::p::p, space :::x, comp button2:::p::p}, comp scrollPane1:::p:467:p}, space :p:55:p}}"
+			"$verticalGroup": "par l {seq l {space :p:56:p, par b {comp label1::b:p::p, comp ratingTxt::b:p::p}, space :p:17:p, par b {comp button1::b:p::p, comp button2::b:p::p}, space s:::p, comp scrollPane1:::p:238:p, space ::28:x}}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "Comments and rating"
+			"iconifiable": true
+			"maximizable": true
+			"closable": true
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Previous"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Next"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Average rating:"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "ratingTxt"
+				"editable": false
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "commentTxt"
+					"editable": false
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 155, 45 )
+			"size": new java.awt.Dimension( 580, 435 )
+		} )
+	}
+}
