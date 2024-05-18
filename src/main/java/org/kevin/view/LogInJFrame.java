@@ -204,7 +204,7 @@ public class LogInJFrame extends JFrame{
                 if (currentUser.getStatus() != null && currentUser.getStatus().equals("librarian")) {
                     new MainJFrame();
                 } else {
-                    new StudentMainJFrame();
+                    new StudentMainJFrame(currentUser);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "wrong user name or password");

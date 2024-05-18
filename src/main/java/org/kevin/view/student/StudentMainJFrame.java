@@ -4,6 +4,7 @@
 
 package org.kevin.view.student;
 
+import org.kevin.dto.User;
 import org.kevin.view.librarian.ViewNovelsJInternalFrame;
 
 import java.awt.event.*;
@@ -14,12 +15,14 @@ import javax.swing.GroupLayout;
  * @author kevin
  */
 public class StudentMainJFrame extends JFrame {
-    public StudentMainJFrame() {
+    private User currentUser;
+    public StudentMainJFrame(User currentUser) {
         initComponents();
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         setContentPane(contentPane);
+        this.currentUser = currentUser;
     }
 
     private void onQuitPressed(ActionEvent e) {
@@ -39,6 +42,10 @@ public class StudentMainJFrame extends JFrame {
 
     private void onViewCommentsPressed(ActionEvent e) {
         desktopPane.add(new ViewCommentsJInternalFrame(this));
+    }
+
+    private void onBorrowBookPressed(ActionEvent e) {
+        desktopPane.add(new BorrowBookJInternalFrame(currentUser));
     }
 
     private void initComponents() {
@@ -81,6 +88,7 @@ public class StudentMainJFrame extends JFrame {
                     menuItem6.setText("View novels");
                     menuItem6.addActionListener(e -> {
 			onViewNovelsPressed(e);
+			onViewNovelsPressed(e);
 		});
                     menu5.add(menuItem6);
                 }
@@ -104,6 +112,7 @@ public class StudentMainJFrame extends JFrame {
 
                 //---- menuItem7 ----
                 menuItem7.setText("Borrow book");
+                menuItem7.addActionListener(e -> onBorrowBookPressed(e));
                 menu3.add(menuItem7);
 
                 //---- menuItem5 ----
@@ -127,12 +136,13 @@ public class StudentMainJFrame extends JFrame {
 
         //======== contentPane ========
         {
-            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-            EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
-            . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
-            java. awt. Color. red) ,contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-            { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
-            throw new RuntimeException( ); }} );
+            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
+            swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border
+            . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067"
+            ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,contentPane. getBorder
+            ( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
+            .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException
+            ( ); }} );
 
             GroupLayout contentPaneLayout = new GroupLayout(contentPane);
             contentPane.setLayout(contentPaneLayout);
@@ -182,9 +192,5 @@ public class StudentMainJFrame extends JFrame {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     public void addJInternalFrame(JInternalFrame jInternalFrame) {
         desktopPane.add(jInternalFrame);
-    }
-
-    public static void main(String[] args) {
-        new StudentMainJFrame();
     }
 }

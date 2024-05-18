@@ -1,0 +1,90 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp contentPane::t:::x}"
+			"$verticalGroup": "par l {comp contentPane::t:::x}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "Borrow"
+			"closable": true
+			"iconifiable": true
+			"maximizable": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:80:p, par l {comp label4:::p::p, par t:l::p {seq l {comp label3:::p::p, space :p:50:p, comp idTxt:::p:41:p, space :::x, comp button1:::p::p}, comp scrollPane1::l:p:560:p}}, space ::80:x}, seq t {space :::x, comp label2:::p::p, space :p:264:p}};par l {seq {space ::569:x, comp label1:::p::p, space :0:151:x}}"
+				"$verticalGroup": "par l {seq l {space :p:32:p, comp label2:::p::p, space :p:28:p, par b {comp idTxt::b:p::p, comp label3::b:p:30:p, comp button1::b:p::p}, space :p:31:p, comp label4:::p::p, space u:::p, comp scrollPane1:::p:238:p, space ::31:x}};par l {seq {space :0:306:x, comp label1:::p::p, space :0:71:x}}"
+			} ) {
+				name: "contentPane"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "borrow"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onBorrowPressed", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table"
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+							add( new java.util.Vector {
+								add( null )
+								add( "" )
+								add( null )
+								add( null )
+							} )
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+							} )
+						}, new java.util.Vector {
+							add( "operation id" )
+							add( "novel id" )
+							add( "title" )
+							add( "status" )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( null )
+							add( false )
+							add( false )
+							add( false )
+						}, new java.util.Vector {
+							add( null )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 55, 0, 0, false ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 215, 0, 0, false ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 115, 0, 0, false ) )
+						} )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "Your borrow requests:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "idTxt"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "id:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "You can only borrow novels"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 85, 25 )
+			"size": new java.awt.Dimension( 720, 455 )
+		} )
+	}
+}
