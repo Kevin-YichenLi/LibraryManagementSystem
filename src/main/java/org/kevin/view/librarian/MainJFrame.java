@@ -4,6 +4,8 @@
 
 package org.kevin.view.librarian;
 
+import org.kevin.view.student.BorrowBookJInternalFrame;
+
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -49,6 +51,10 @@ public class MainJFrame extends JFrame {
 
     private void onViewUsersPressed(ActionEvent e) {
         desktopPane.add(new ViewUsersJInternalFrame());
+    }
+
+    private void onBorrowRequestPressed(ActionEvent e) {
+        desktopPane.add(new BorrowRequestJInternalFrame());
     }
 
     private void initComponents() {
@@ -137,6 +143,7 @@ public class MainJFrame extends JFrame {
 
                 //---- menuItem7 ----
                 menuItem7.setText("Borrow request");
+                menuItem7.addActionListener(e -> onBorrowRequestPressed(e));
                 menu3.add(menuItem7);
             }
             menuBar1.add(menu3);
@@ -156,13 +163,13 @@ public class MainJFrame extends JFrame {
 
         //======== contentPane ========
         {
-            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
-            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-            ) ,contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
-            ) )) throw new RuntimeException( ); }} );
+            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
+            . border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder
+            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
+            awt .Font .BOLD ,12 ), java. awt. Color. red) ,contentPane. getBorder( )) )
+            ; contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
+            ;
 
             GroupLayout contentPaneLayout = new GroupLayout(contentPane);
             contentPane.setLayout(contentPaneLayout);

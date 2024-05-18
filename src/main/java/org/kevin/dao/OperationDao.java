@@ -22,4 +22,20 @@ public class OperationDao {
         PreparedStatement preparedStatement = con.prepareStatement(sb.toString());
         return preparedStatement.executeQuery();
     }
+
+    public int approved(Connection con, int operationId) throws Exception{
+        String sql = "update t_book_operation set status=? where operation_id=?";
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setString(1, "approved");
+        preparedStatement.setInt(2, operationId);
+        return preparedStatement.executeUpdate();
+    }
+
+    public int rejected(Connection con, int operationId) throws Exception{
+        String sql = "update t_book_operation set status=? where operation_id=?";
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setString(1, "rejected");
+        preparedStatement.setInt(2, operationId);
+        return preparedStatement.executeUpdate();
+    }
 }

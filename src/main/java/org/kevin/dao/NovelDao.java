@@ -110,4 +110,23 @@ public class NovelDao implements Commentable {
         preparedStatement.setInt(2, id);
         return preparedStatement.executeUpdate();
     }
+
+    public int approved(Connection con, int novelId) throws Exception {
+        String sql = "update t_novel set storageNum=? where id=?";
+
+        int storageNum = 0;
+        ResultSet rs = list(con, new Novel());
+        while (rs.next()) {
+            if (rs.getString("id").equals(novelId + "")) {
+                storageNum = rs.getInt("storageNum");
+                break;
+            }
+        }
+        storageNum--;
+
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setInt(1, storageNum);
+        preparedStatement.setInt(2, novelId);
+        return preparedStatement.executeUpdate();
+    }
 }

@@ -1,0 +1,90 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp contentPane::l:::x}"
+			"$verticalGroup": "par l {comp contentPane::l:::x}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "Borrow request"
+			"maximizable": true
+			"iconifiable": true
+			"closable": true
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:41:p, par l {comp scrollPane1:::p:560:p, seq l {space :p:1:p, comp label1:::p::p, space :p:30:p, comp operationIdTxt:::p:61:p, space :p:68:p, comp button2:::p::p, space :p:55:p, comp button1:::p::p}}, space ::49:x}}"
+				"$verticalGroup": "par l {seq l {space :p:24:p, comp scrollPane1:::p:238:p, space :p:32:p, par b {comp label1::b:p::p, comp operationIdTxt::b:p::p, comp button2::b:p::p, comp button1::b:p::p}, space ::32:x}}"
+			} ) {
+				name: "contentPane"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table"
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+								add( "" )
+								add( null )
+								add( null )
+							} )
+							add( new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+							} )
+						}, new java.util.Vector {
+							add( "operation id" )
+							add( "user name" )
+							add( "novel id" )
+							add( "title" )
+							add( "status" )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( false )
+							add( false )
+							add( false )
+						}, new java.util.Vector {
+							add( null )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 125, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 55, 0, 0, false ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 215, 0, 0, false ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 115, 0, 0, false ) )
+						} )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Operation id:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "operationIdTxt"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "rejected"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onRejectedPressed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "approved"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onApprovedPressed", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 110, 50 )
+			"size": new java.awt.Dimension( 650, 375 )
+		} )
+	}
+}
