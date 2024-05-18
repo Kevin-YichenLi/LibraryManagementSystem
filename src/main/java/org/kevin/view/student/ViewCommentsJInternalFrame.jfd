@@ -37,7 +37,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onViewCommentsPressed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 60, 20 )
+			"location": new java.awt.Point( 265, 130 )
 			"size": new java.awt.Dimension( 310, 255 )
 		} )
 		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
