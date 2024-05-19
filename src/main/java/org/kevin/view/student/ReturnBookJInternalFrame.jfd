@@ -1,0 +1,77 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JInternalFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:62:p, comp label1:::p::p, space :p:26:p, comp operationIdTxt:::p:61:p, space ::218:x, comp button1:::p::p, space :p:178:p}, seq l {space :p:53:p, par l {comp label2:::p::p, comp scrollPane1:::p:568:p}, space ::79:x}}"
+			"$verticalGroup": "par l {seq l {space :p:18:p, comp label2:::p::p, space u:::p, comp scrollPane1:::p:246:p, space :p:26:p, par b {comp label1::b:p::p, comp operationIdTxt::b:p::p, comp button1::b:p::p}, space ::22:x}}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "Return book"
+			"maximizable": true
+			"iconifiable": true
+			"closable": true
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( null )
+							add( "" )
+							add( null )
+							add( null )
+						} )
+						add( new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					}, new java.util.Vector {
+						add( "operation id" )
+						add( "novel id" )
+						add( "title" )
+						add( "status" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( false )
+						add( false )
+						add( false )
+					}, new java.util.Vector {
+						add( null )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 55, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 215, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 115, 0, 0, false ) )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Operation id:"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "operationIdTxt"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "return"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onRejectedPressed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "My borrow requests"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 35, 10 )
+			"size": new java.awt.Dimension( 700, 390 )
+		} )
+	}
+}

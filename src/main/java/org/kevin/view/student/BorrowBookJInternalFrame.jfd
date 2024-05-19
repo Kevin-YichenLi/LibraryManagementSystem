@@ -65,7 +65,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"
-					"text": "Your borrow requests:"
+					"text": "My borrow requests:"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "idTxt"
@@ -76,7 +76,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label2"
-					"text": "You can only borrow novels"
+					"text": "Only novels can be borrowed"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"

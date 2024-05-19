@@ -51,6 +51,11 @@ public class BorrowBookJInternalFrame extends JInternalFrame {
             while (resultSet.next()) {
                 int currentId = Integer.parseInt(resultSet.getString("id"));
                 if (id == currentId) {
+                    if (resultSet.getInt("storageNum") <= 0) {
+                        JOptionPane.showMessageDialog(null, "Sorry, the requested book is out of stock");
+                        return;
+                    }
+
                     flag = true;
                     String title = resultSet.getString("title");
                     operationDao.borrow(con, currentUser.getUserName(), id, title);
@@ -99,11 +104,13 @@ public class BorrowBookJInternalFrame extends JInternalFrame {
 
         //======== contentPane ========
         {
-            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder( 0
-            , 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
-            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,
-            contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            contentPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
+            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+            ) ,contentPane. getBorder( )) ); contentPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
+            ) )) throw new RuntimeException( ); }} );
 
             //---- button1 ----
             button1.setText("borrow");
@@ -143,13 +150,13 @@ public class BorrowBookJInternalFrame extends JInternalFrame {
             }
 
             //---- label4 ----
-            label4.setText("Your borrow requests:");
+            label4.setText("My borrow requests:");
 
             //---- label3 ----
             label3.setText("id:");
 
             //---- label2 ----
-            label2.setText("You can only borrow novels");
+            label2.setText("Only novels can be borrowed");
 
             GroupLayout contentPaneLayout = new GroupLayout(contentPane);
             contentPane.setLayout(contentPaneLayout);
@@ -235,7 +242,8 @@ public class BorrowBookJInternalFrame extends JInternalFrame {
             con = dbUtil.getCon();
             ResultSet resultSet = operationDao.list(con);
             while (resultSet.next()) {
-                if (currentUser.getUserName().equals(resultSet.getString("user name"))) {
+                if (currentUser.getUserName().equals(resultSet.getString("user name")) 
+                        && !resultSet.getString("status").equals("returned")) {
                     ArrayList<String> rowData = new ArrayList<>();
                     rowData.add(resultSet.getString("operation_id"));
                     rowData.add(resultSet.getString("novel_id"));

@@ -38,4 +38,12 @@ public class OperationDao {
         preparedStatement.setInt(2, operationId);
         return preparedStatement.executeUpdate();
     }
+
+    public int returned(Connection con, int operationId) throws Exception{
+        String sql = "update t_book_operation set status=? where operation_id=?";
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setString(1, "returned");
+        preparedStatement.setInt(2, operationId);
+        return preparedStatement.executeUpdate();
+    }
 }
