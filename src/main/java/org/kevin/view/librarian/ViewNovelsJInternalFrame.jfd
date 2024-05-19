@@ -13,8 +13,8 @@ new FormModel {
 			"iconifiable": true
 			"closable": true
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space ::34:x, par l {comp scrollPane1:::p:538:p, comp panel1:::::x}, space ::43:x}}"
-				"$verticalGroup": "par l {seq t {space :p:16:p, comp panel1:::p::p, space ::42:x, comp scrollPane1:::p:248:p, space :p:14:p}}"
+				"$horizontalGroup": "par l {seq {space ::72:x, par l {seq {space :6:6:p, comp idButton:::p:28:p, space :p:60:p, comp authorButton:::p:28:p, space :p:186:p, comp yearOfPublicationButton:::p:28:p, space :p:92:p, comp titleButton:::p:28:p}, par t:::p {comp panel1:::::x, comp scrollPane1::t::612:x}}, space ::41:x}}"
+				"$verticalGroup": "par l {seq t {space :p:16:p, comp panel1:::p::p, space :::p, par l {comp idButton:::p:36:p, comp authorButton:::p::p, comp yearOfPublicationButton:::p::p, comp titleButton:::p::p}, space :::p, comp scrollPane1::::272:x, space :p:14:p}}"
 			} ) {
 				name: "contentPane"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -70,7 +70,7 @@ new FormModel {
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:29:p, par t {comp label1:::p::p, comp label3:::p::p}, space u:::p, par l:::p {seq {comp titleTxt:::p:143:p, space :p:20:p, comp label2:::p::p}, seq {comp yearOfPublicationTxt:::p:143:p, space :::x, comp label4:::p::p}}, space s:::p, par l {comp authorTxt:::p:143:p, comp genreJbc:::::x}, space u:::p, comp button1:::p:64:p, space :p:17:p}}"
+					"$horizontalGroup": "par l {seq l {space :p:29:p, par t {comp label1:::p::p, comp label3:::p::p}, space u:::p, par l:::p {seq {comp titleTxt:::p:143:p, space :p:20:p, comp label2:::p::p}, seq {comp yearOfPublicationTxt:::p:143:p, space :::x, comp label4:::p::p}}, space s:::p, par l {comp authorTxt:::p:143:p, comp genreJbc::::217:x}, space u:::p, comp button1:::p:64:p, space :p:17:p}}"
 					"$verticalGroup": "par l {seq {par l {seq {space :p:9:p, par b {comp label1::b:p::p, comp label2::b:p::p, comp authorTxt::b:p::p, comp titleTxt::b:p::p}, space s:::p, par b {comp label3::b:p::p, comp yearOfPublicationTxt::b:p::p, comp label4::b:p::p, comp genreJbc::b:p::p}}, seq l {space :p:32:p, comp button1:::p::p}}, space ::10:x}}"
 				} ) {
 					name: "panel1"
@@ -109,10 +109,30 @@ new FormModel {
 						name: "genreJbc"
 					} )
 				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "idButton"
+					"icon": &SwingIcon0 new com.jformdesigner.model.SwingIcon( 0, "/sort icon (4) (1).png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sortOnId", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "authorButton"
+					"icon": #SwingIcon0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sortOnAuthor", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "yearOfPublicationButton"
+					"icon": #SwingIcon0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sortByYear", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "titleButton"
+					"icon": #SwingIcon0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sortByTitle", true ) )
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 5, 35 )
-			"size": new java.awt.Dimension( 615, 460 )
+			"location": new java.awt.Point( 110, 50 )
+			"size": new java.awt.Dimension( 725, 490 )
 		} )
 	}
 }
