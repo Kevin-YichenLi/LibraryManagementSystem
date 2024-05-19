@@ -5,8 +5,11 @@
 package org.kevin.view.student;
 
 import java.awt.event.*;
+
 import org.kevin.dao.NovelDao;
+import org.kevin.dao.TextbookDao;
 import org.kevin.dto.Novel;
+import org.kevin.dto.Textbook;
 import org.kevin.util.DBUtil;
 
 import javax.swing.*;
@@ -18,12 +21,14 @@ import java.sql.ResultSet;
  * @author kevin
  */
 public class CommentsAndRatingJInternalFrame extends JInternalFrame {
+    private TextbookDao textbookDao = new TextbookDao();
     private String type;
     private int id;
     private int index;
     private int length;
     private DBUtil dbUtil = new DBUtil();
     private NovelDao novelDao = new NovelDao();
+
     public CommentsAndRatingJInternalFrame(String type, int id) {
         initComponents();
         setSize(580, 435);
@@ -145,78 +150,80 @@ public class CommentsAndRatingJInternalFrame extends JInternalFrame {
     private JLabel label2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     private void showComment() {
-        if (type.equals("textbook")) {
+        Connection con = null;
+        try {
+            con = dbUtil.getCon();
+            ResultSet resultSet = novelDao.list(con, new Novel());
 
-        } else {
-            Connection con = null;
-            try {
-                con = dbUtil.getCon();
-                ResultSet resultSet = novelDao.list(con, new Novel());
+            if (type.equals("textbook")) {
+                resultSet = textbookDao.list(con, new Textbook());
+            }
 
-                int counter = 0;
-                String originalComments = "";
+            int counter = 0;
+            String originalComments = "";
 
-                while (resultSet.next()) {
-                    String currentId = resultSet.getString("id");
-                    if (id == Integer.parseInt(currentId)) {
-                        originalComments = resultSet.getString("comments");
-                    }
+            while (resultSet.next()) {
+                String currentId = resultSet.getString("id");
+                if (id == Integer.parseInt(currentId)) {
+                    originalComments = resultSet.getString("comments");
                 }
+            }
 
-                String[] comments = originalComments.split("~");
-                length = comments.length;
-                commentTxt.setText(comments[index]);
+            String[] comments = originalComments.split("~");
+            length = comments.length;
+            commentTxt.setText(comments[index]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dbUtil.closeCon(con);
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    dbUtil.closeCon(con);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         }
     }
 
+
     private void showAverageRating() {
-        if (type.equals("textbook")) {
+        Connection con = null;
+        try {
+            con = dbUtil.getCon();
+            ResultSet resultSet = novelDao.list(con, new Novel());
 
-        } else {
-            Connection con = null;
-            try {
-                con = dbUtil.getCon();
-                ResultSet resultSet = novelDao.list(con, new Novel());
+            if (type.equals("textbook")) {
+                resultSet = textbookDao.list(con, new Textbook());
+            }
 
-                double rating = 0;
-                int counter = 0;
-                String comments = "";
+            double rating = 0;
+            int counter = 0;
+            String comments = "";
 
-                while (resultSet.next()) {
-                    String currentId = resultSet.getString("id");
-                    if (id == Integer.parseInt(currentId)) {
-                        rating = Double.parseDouble(resultSet.getString("rating"));
-                        comments = resultSet.getString("comments");
-                    }
-                }
-
-                for (int i = 0; i < comments.length(); i++) {
-                    if (comments.charAt(i) == '~') {
-                        counter++;
-                    }
-                }
-
-                rating /= counter;
-                ratingTxt.setText(rating + "");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    dbUtil.closeCon(con);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            while (resultSet.next()) {
+                String currentId = resultSet.getString("id");
+                if (id == Integer.parseInt(currentId)) {
+                    rating = Double.parseDouble(resultSet.getString("rating"));
+                    comments = resultSet.getString("comments");
                 }
             }
+
+            for (int i = 0; i < comments.length(); i++) {
+                if (comments.charAt(i) == '~') {
+                    counter++;
+                }
+            }
+
+            rating /= counter;
+            ratingTxt.setText(rating + "");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dbUtil.closeCon(con);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
     }
 }

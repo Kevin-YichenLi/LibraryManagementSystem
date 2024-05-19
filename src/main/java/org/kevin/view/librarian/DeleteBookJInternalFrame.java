@@ -5,7 +5,9 @@
 package org.kevin.view.librarian;
 
 import org.kevin.dao.NovelDao;
+import org.kevin.dao.TextbookDao;
 import org.kevin.dto.Novel;
+import org.kevin.dto.Textbook;
 import org.kevin.util.DBUtil;
 
 import java.awt.event.*;
@@ -19,6 +21,7 @@ import javax.swing.GroupLayout;
  * @author kevin
  */
 public class DeleteBookJInternalFrame extends JInternalFrame {
+    private TextbookDao textbookDao = new TextbookDao();
     public DeleteBookJInternalFrame() {
         initComponents();
         setSize(300, 300);
@@ -32,37 +35,42 @@ public class DeleteBookJInternalFrame extends JInternalFrame {
         }
         int id = Integer.parseInt(idTxt.getText());
 
-        if (textbookJrb.isSelected()) {
+        Connection con = null;
+        ResultSet resultSet = null;
 
-        } else {
-            Connection con = null;
-            try {
-                con = dbUtil.getCon();
-                ResultSet resultSet = novelDao.list(con, new Novel());
-                boolean flag = false;
+        try {
+            con = dbUtil.getCon();
+            if (textbookJrb.isSelected()) {
+                resultSet = textbookDao.list(con, new Textbook());
+            } else {
+                resultSet = novelDao.list(con, new Novel());
+            }
+            boolean flag = false;
 
-
-                while (resultSet.next()) {
-                    String currentId = resultSet.getString("id");
-                    if ((id == Integer.parseInt(currentId))) {
+            while (resultSet.next()) {
+                String currentId = resultSet.getString("id");
+                if ((id == Integer.parseInt(currentId))) {
+                    if (textbookJrb.isSelected()) {
+                        textbookDao.delete(con, id);
+                    } else {
                         novelDao.delete(con, id);
-                        flag = true;
-                        JOptionPane.showMessageDialog(null, "delete successfully");
-                        break;
                     }
+                    flag = true;
+                    JOptionPane.showMessageDialog(null, "delete successfully");
+                    break;
                 }
+            }
 
-                if (!flag) {
-                    JOptionPane.showMessageDialog(null, "The book with such id doesn't exist");
-                }
+            if (!flag) {
+                JOptionPane.showMessageDialog(null, "The book with such id doesn't exist");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dbUtil.closeCon(con);
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    dbUtil.closeCon(con);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         }
     }

@@ -44,6 +44,7 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem2"
 							"text": "View textbooks"
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "onViewTextbooksPressed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JMenuItem" ) {
 							name: "menuItem6"

@@ -5,7 +5,9 @@
 package org.kevin.view.student;
 
 import org.kevin.dao.NovelDao;
+import org.kevin.dao.TextbookDao;
 import org.kevin.dto.Novel;
+import org.kevin.dto.Textbook;
 import org.kevin.util.DBUtil;
 
 import java.awt.event.*;
@@ -20,6 +22,7 @@ import javax.swing.GroupLayout;
 public class CommentBookJInternalFrame extends JInternalFrame {
     private DBUtil dbUtil = new DBUtil();
     private NovelDao novelDao = new NovelDao();
+    private TextbookDao textbookDao = new TextbookDao();
     public CommentBookJInternalFrame() {
         initComponents();
         setSize(590, 440);
@@ -49,11 +52,40 @@ public class CommentBookJInternalFrame extends JInternalFrame {
 
         String id = idTxt.getText();
         String comment = commentArea.getText();
+        Connection con = null;
 
         if (textbookJrb.isSelected()) {
-            // lack codes for textbook
+            try {
+                con = dbUtil.getCon();
+                ResultSet resultSet = textbookDao.list(con, new Textbook());
+                boolean flag = false;
+
+                while (resultSet.next()) {
+                    String currentId = resultSet.getString("id");
+                    if (id.equals(currentId)) {
+                        flag = true;
+
+                        textbookDao.comment(con, comment, Integer.parseInt(id));
+                        textbookDao.rate(con, rating, Integer.parseInt(id));
+
+                        JOptionPane.showMessageDialog(null, "comment successfully");
+                        break;
+                    }
+                }
+
+                if (!flag) {
+                    JOptionPane.showMessageDialog(null, "The book with such id doesn't exist");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    dbUtil.closeCon(con);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
-            Connection con = null;
             try {
                 con = dbUtil.getCon();
                 ResultSet resultSet = novelDao.list(con, new Novel());
@@ -113,13 +145,13 @@ public class CommentBookJInternalFrame extends JInternalFrame {
 
         //======== panel1 ========
         {
-            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
-            swing.border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border
-            .TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog"
-            ,java.awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder
-            ()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java
-            .beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException
-            ();}});
+            panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax
+            .swing.border.EmptyBorder(0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing
+            .border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.
+            Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.red
+            ),panel1. getBorder()));panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override
+            public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName(
+            )))throw new RuntimeException();}});
 
             //---- label1 ----
             label1.setText("Enter the book id you want to comment on: ");

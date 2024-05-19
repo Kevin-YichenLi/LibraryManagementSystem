@@ -10,7 +10,7 @@ import java.sql.ResultSet;
  * Novel Dao class
  * @author Kevin-Yichen Li
  */
-public class NovelDao implements Commentable {
+public class NovelDao implements Commentable, LibraryItemDao<Novel>{
 
     /**
      * add novel to database

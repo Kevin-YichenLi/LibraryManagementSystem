@@ -13,12 +13,10 @@ public class Textbook extends LibraryItem {
         super(author, title, yearOfPublication, storageNum);
     }
 
-    public Textbook(int id, String author, String title, int yearOfPublication, int storageNum) {
-        super(id, author, title, yearOfPublication, storageNum);
-    }
-
-    public int getID() {
-        return id;
+    public Textbook(String title, int yearOfPublication, String author) {
+        this.title = title;
+        this.yearOfPublication = yearOfPublication;
+        this.author = author;
     }
 
     public String getAuthor() {
@@ -61,14 +59,6 @@ public class Textbook extends LibraryItem {
                 ", yearOfPublication=" + yearOfPublication +
                 ", storageNum=" + storageNum +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override

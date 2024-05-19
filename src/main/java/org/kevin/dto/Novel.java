@@ -11,11 +11,6 @@ public class Novel extends LibraryItem{
         this.genre = genre;
     }
 
-    public Novel(int id, String author, String title, int yearOfPublication, int storageNum, Genre genre) {
-        super(id, author, title, yearOfPublication, storageNum);
-        this.genre = genre;
-    }
-
     public Novel(String title, int yearOfPublication, Genre genre, String author) {
         this.title = title;
         this.yearOfPublication = yearOfPublication;
@@ -25,14 +20,6 @@ public class Novel extends LibraryItem{
 
     public Novel() {
         super();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAuthor() {

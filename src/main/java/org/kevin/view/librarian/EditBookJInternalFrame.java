@@ -5,8 +5,10 @@
 package org.kevin.view.librarian;
 
 import org.kevin.dao.NovelDao;
+import org.kevin.dao.TextbookDao;
 import org.kevin.dto.Genre;
 import org.kevin.dto.Novel;
+import org.kevin.dto.Textbook;
 import org.kevin.util.DBUtil;
 
 import java.awt.event.*;
@@ -19,6 +21,7 @@ import javax.swing.GroupLayout;
  * @author kevin
  */
 public class EditBookJInternalFrame extends JInternalFrame {
+    private TextbookDao textbookDao = new TextbookDao();
     public EditBookJInternalFrame() {
         initComponents();
         setSize(580, 350);
@@ -47,19 +50,55 @@ public class EditBookJInternalFrame extends JInternalFrame {
             JOptionPane.showMessageDialog(null, "year of publication can't be empty");
             return;
         }
-        if (genreJcb.getSelectedItem().toString().equals("None, it's a textbook")) {
-            JOptionPane.showMessageDialog(null, "genre can't be none, it's novel");
-            return;
-        }
 
-        Genre genre = Genre.valueOf(genreJcb.getSelectedItem().toString().replace('-', '_').toUpperCase());
 
         int id = Integer.parseInt(idTxt.getText());
         int yearOfPublication = Integer.parseInt(yearOfPublicationTxt.getText());
 
         if (textbookJrb.isSelected()) {
+            if (!genreJcb.getSelectedItem().toString().equals("None, it's a textbook")) {
+                JOptionPane.showMessageDialog(null, "Textbooks don't have genre");
+                return;
+            }
 
+            Connection con = null;
+            try {
+                con = dbUtil.getCon();
+                ResultSet resultSet = textbookDao.list(con, new Textbook());
+                boolean flag = false;
+
+                while (resultSet.next()) {
+                    String currentId = resultSet.getString("id");
+                    if ((id == Integer.parseInt(currentId))) {
+                        Textbook textbook = new Textbook(title, yearOfPublication, author);
+
+                        textbookDao.update(con, textbook, id);
+                        flag = true;
+                        JOptionPane.showMessageDialog(null, "edit successfully");
+                        break;
+                    }
+                }
+
+                if (!flag) {
+                    JOptionPane.showMessageDialog(null, "The book with such id doesn't exist");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    dbUtil.closeCon(con);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
+            if (genreJcb.getSelectedItem().toString().equals("None, it's a textbook")) {
+                JOptionPane.showMessageDialog(null, "genre can't be none, it's a novel");
+                return;
+            }
+
+            Genre genre = Genre.valueOf(genreJcb.getSelectedItem().toString().replace('-', '_').toUpperCase());
+
             Connection con = null;
             try {
                 con = dbUtil.getCon();
@@ -241,7 +280,6 @@ public class EditBookJInternalFrame extends JInternalFrame {
         buttonGroup1.add(textbookJrb);
         buttonGroup1.add(novelJrb);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
-
         fillGenre();
     }
 

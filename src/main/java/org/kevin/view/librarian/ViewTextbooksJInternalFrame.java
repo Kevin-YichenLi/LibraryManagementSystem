@@ -1,33 +1,36 @@
 /*
- * Created by JFormDesigner on Thu May 02 00:39:41 EDT 2024
+ * Created by JFormDesigner on Sun May 19 14:52:45 EDT 2024
  */
 
 package org.kevin.view.librarian;
 
-import java.awt.event.*;
-import org.kevin.dao.NovelDao;
+import org.kevin.dao.TextbookDao;
 import org.kevin.dto.Genre;
 import org.kevin.dto.Novel;
+import org.kevin.dto.Textbook;
 import org.kevin.util.DBUtil;
 
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.border.*;
-import javax.swing.table.*;
+import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.border.*;
+import javax.swing.table.*;
 
 /**
  * @author kevin
  */
-public class ViewNovelsJInternalFrame extends JInternalFrame {
+public class ViewTextbooksJInternalFrame extends JInternalFrame {
+    private DBUtil dbUtil = new DBUtil();
+    private TextbookDao textbookDao = new TextbookDao();
     private int idSortCount;
     private int authorSortCount;
     private int yearOfPublicationSortCount;
     private int titleSortCount;
-    public ViewNovelsJInternalFrame() {
+    public ViewTextbooksJInternalFrame() {
         initComponents();
         setSize(700, 472);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
@@ -35,85 +38,37 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
         titleSortCount = 0;
         yearOfPublicationSortCount = 0;
         authorSortCount = 0;
+        fillTable(new Textbook());
     }
 
-    /**
-     * search a novel
-     * @param e
-     */
     private void onSearchPressed(ActionEvent e) {
         int year = 0;
         String title = titleTxt.getText();
         String author = authorTxt.getText();
         String yearOfPublication = yearOfPublicationTxt.getText();
-        if (!yearOfPublication.equals("")) {
+        if (!yearOfPublication.isEmpty()) {
             year = Integer.parseInt(yearOfPublication);
         }
-        Genre genre = null;
-        if (!genreJbc.getSelectedItem().toString().equals("Please choose...")) {
-            genre = Genre.valueOf(genreJbc.getSelectedItem().toString().toUpperCase());
-        }
 
-        Novel novel = new Novel(title, year, genre, author);
-        fillTable(novel);
+        Textbook textbook = new Textbook(title, year, author);
+        fillTable(textbook);
     }
 
-    public void sortOnId(ActionEvent e) {
-        idSortCount++;
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        Vector<Vector> data = model.getDataVector();
-
-        data.sort((Vector v1, Vector v2) -> {
-            Integer id1 = Integer.parseInt(v1.get(0).toString());
-            Integer id2 = Integer.parseInt(v2.get(0).toString());
-            return idSortCount % 2 == 0 ? id1.compareTo(id2) : id2.compareTo(id1);
-        });
-
-        model.fireTableDataChanged();
+    private void sortOnId(ActionEvent e) {
+        new ViewNovelsJInternalFrame().sortOnId(e);
     }
 
-    public void sortOnAuthor(ActionEvent e) {
-        authorSortCount++;
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        Vector<Vector> data = model.getDataVector();
-
-        data.sort((Vector v1, Vector v2) -> {
-            String author1 = v1.get(1).toString();
-            String author2 = v2.get(1).toString();
-            return authorSortCount % 2 == 0 ? author1.compareToIgnoreCase(author2) : author2.compareToIgnoreCase(author1);
-        });
-
-        model.fireTableDataChanged();
+    private void sortOnAuthor(ActionEvent e) {
+        new ViewNovelsJInternalFrame().sortOnAuthor(e);
     }
 
-    public void sortByYear(ActionEvent e) {
-        yearOfPublicationSortCount++;
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        Vector<Vector> data = model.getDataVector();
-
-        data.sort((Vector v1, Vector v2) -> {
-            Integer year1 = Integer.parseInt(v1.get(3).toString());
-            Integer year2 = Integer.parseInt(v2.get(3).toString());
-            return yearOfPublicationSortCount % 2 == 0 ? year1.compareTo(year2) : year2.compareTo(year1);
-        });
-
-        model.fireTableDataChanged();
+    private void sortByYear(ActionEvent e) {
+        new ViewNovelsJInternalFrame().sortByYear(e);
     }
 
-    public void sortByTitle(ActionEvent e) {
-        titleSortCount++;
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        Vector<Vector> data = model.getDataVector();
-
-        data.sort((Vector v1, Vector v2) -> {
-            String title1 = v1.get(4).toString();
-            String title2 = v2.get(4).toString();
-            return titleSortCount % 2 == 0 ? title1.compareToIgnoreCase(title2) : title2.compareToIgnoreCase(title1);
-        });
-
-        model.fireTableDataChanged();
+    private void sortByTitle(ActionEvent e) {
+        new ViewNovelsJInternalFrame().sortByTitle(e);
     }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -128,9 +83,7 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
         titleTxt = new JTextField();
         label3 = new JLabel();
         yearOfPublicationTxt = new JTextField();
-        label4 = new JLabel();
         button1 = new JButton();
-        genreJbc = new JComboBox();
         idButton = new JButton();
         authorButton = new JButton();
         yearOfPublicationButton = new JButton();
@@ -138,8 +91,9 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
 
         //======== this ========
         setVisible(true);
-        setTitle("view novels");
         setIconifiable(true);
+        setMaximizable(true);
+        setTitle("View textbooks");
         setClosable(true);
         var contentPane2 = getContentPane();
 
@@ -159,15 +113,15 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
                 //---- table ----
                 table.setModel(new DefaultTableModel(
                     new Object[][] {
-                        {null, null, "", "", null, null},
-                        {null, null, null, null, null, null},
+                        {null, null, "", "", null},
+                        {null, null, null, null, null},
                     },
                     new String[] {
-                        "ID", "Author", "Storage number", "Year of publication", "Title", "Genre"
+                        "ID", "Author", "Storage number", "Year of publication", "Title"
                     }
                 ) {
                     boolean[] columnEditable = new boolean[] {
-                        false, false, false, false, false, false
+                        false, false, false, false, false
                     };
                     @Override
                     public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -181,7 +135,6 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
                     cm.getColumn(2).setPreferredWidth(100);
                     cm.getColumn(3).setPreferredWidth(120);
                     cm.getColumn(4).setPreferredWidth(100);
-                    cm.getColumn(5).setPreferredWidth(120);
                 }
                 scrollPane1.setViewportView(table);
             }
@@ -199,9 +152,6 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
                 //---- label3 ----
                 label3.setText("Year:");
 
-                //---- label4 ----
-                label4.setText("Genre:");
-
                 //---- button1 ----
                 button1.setText("Search");
                 button1.addActionListener(e -> onSearchPressed(e));
@@ -216,20 +166,15 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
                                 .addComponent(label1)
                                 .addComponent(label3))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panel1Layout.createParallelGroup()
                                 .addGroup(panel1Layout.createSequentialGroup()
                                     .addComponent(titleTxt, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)
                                     .addComponent(label2))
-                                .addGroup(panel1Layout.createSequentialGroup()
-                                    .addComponent(yearOfPublicationTxt, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(label4)))
+                                .addComponent(yearOfPublicationTxt, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
-                            .addGroup(panel1Layout.createParallelGroup()
-                                .addComponent(authorTxt, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(genreJbc, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(authorTxt, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 86, Short.MAX_VALUE)
                             .addComponent(button1, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
                             .addGap(17, 17, 17))
                 );
@@ -247,13 +192,11 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
                                     .addGap(18, 18, 18)
                                     .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(label3)
-                                        .addComponent(yearOfPublicationTxt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label4)
-                                        .addComponent(genreJbc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(yearOfPublicationTxt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(panel1Layout.createSequentialGroup()
                                     .addGap(32, 32, 32)
                                     .addComponent(button1)))
-                            .addContainerGap(10, Short.MAX_VALUE))
+                            .addContainerGap(11, Short.MAX_VALUE))
                 );
             }
 
@@ -278,35 +221,34 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
             contentPaneLayout.setHorizontalGroup(
                 contentPaneLayout.createParallelGroup()
                     .addGroup(contentPaneLayout.createSequentialGroup()
-                        .addContainerGap(72, Short.MAX_VALUE)
+                        .addGap(72, 72, 72)
                         .addGroup(contentPaneLayout.createParallelGroup()
                             .addGroup(contentPaneLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(idButton, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
+                                .addGap(87, 87, 87)
                                 .addComponent(authorButton, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                                .addGap(186, 186, 186)
+                                .addGap(242, 242, 242)
                                 .addComponent(yearOfPublicationButton, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                                .addGap(92, 92, 92)
+                                .addGap(118, 118, 118)
                                 .addComponent(titleButton, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)))
-                        .addContainerGap(41, Short.MAX_VALUE))
+                            .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 612, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(76, Short.MAX_VALUE))
             );
             contentPaneLayout.setVerticalGroup(
                 contentPaneLayout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(10, 10, 10)
                         .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(contentPaneLayout.createParallelGroup()
                             .addComponent(idButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(authorButton)
                             .addComponent(yearOfPublicationButton)
-                            .addComponent(titleButton))
+                            .addComponent(titleButton)
+                            .addComponent(authorButton))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                         .addGap(14, 14, 14))
             );
         }
@@ -315,15 +257,19 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
         contentPane2.setLayout(contentPane2Layout);
         contentPane2Layout.setHorizontalGroup(
             contentPane2Layout.createParallelGroup()
-                .addComponent(contentPane, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPane2Layout.createParallelGroup()
+                    .addGroup(contentPane2Layout.createSequentialGroup()
+                        .addComponent(contentPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 5, Short.MAX_VALUE)))
+                .addGap(0, 765, Short.MAX_VALUE)
         );
         contentPane2Layout.setVerticalGroup(
             contentPane2Layout.createParallelGroup()
-                .addComponent(contentPane, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPane2Layout.createParallelGroup()
+                    .addComponent(contentPane, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 452, Short.MAX_VALUE)
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
-        fillGenreJbc();
-        fillTable(new Novel());
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
@@ -338,39 +284,20 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
     private JTextField titleTxt;
     private JLabel label3;
     private JTextField yearOfPublicationTxt;
-    private JLabel label4;
     private JButton button1;
-    private JComboBox genreJbc;
     private JButton idButton;
     private JButton authorButton;
     private JButton yearOfPublicationButton;
     private JButton titleButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-    private DBUtil dbUtil = new DBUtil();
-    private NovelDao novelDao = new NovelDao();
 
-    /**
-     * Initialize genre Jbc
-     */
-    private void fillGenreJbc() {
-        genreJbc.addItem("Please choose...");
-        genreJbc.addItem("Action");
-        genreJbc.addItem("Horror");
-        genreJbc.addItem("Fantasy");
-        genreJbc.addItem("Science-fiction");
-    }
-
-    /**
-     * Initialize the table
-     * @param novel
-     */
-    private void fillTable(Novel novel) {
+    private void fillTable(Textbook textbook) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) table.getModel();
         defaultTableModel.setRowCount(0);
         Connection con = null;
         try {
             con = dbUtil.getCon();
-            ResultSet resultSet = novelDao.list(con, novel);
+            ResultSet resultSet = textbookDao.list(con, textbook);
             while (resultSet.next()) {
                 ArrayList<String> rowData = new ArrayList<>();
                 rowData.add(resultSet.getString("id"));
@@ -378,7 +305,6 @@ public class ViewNovelsJInternalFrame extends JInternalFrame {
                 rowData.add(resultSet.getString("storageNum"));
                 rowData.add(resultSet.getString("yearOfPublication"));
                 rowData.add(resultSet.getString("title"));
-                rowData.add(resultSet.getString("genre"));
                 defaultTableModel.addRow(rowData.toArray());
             }
         } catch (Exception e) {

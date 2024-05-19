@@ -5,7 +5,9 @@
 package org.kevin.view.student;
 
 import org.kevin.dao.NovelDao;
+import org.kevin.dao.TextbookDao;
 import org.kevin.dto.Novel;
+import org.kevin.dto.Textbook;
 import org.kevin.util.DBUtil;
 
 import javax.swing.*;
@@ -17,9 +19,11 @@ import java.sql.ResultSet;
  * @author kevin
  */
 public class ViewCommentsJInternalFrame extends JInternalFrame {
+    private TextbookDao textbookDao = new TextbookDao();
     private DBUtil dbUtil = new DBUtil();
     private NovelDao novelDao = new NovelDao();
     private StudentMainJFrame studentMainFrame;
+
     public ViewCommentsJInternalFrame(StudentMainJFrame studentMainFrame) {
         this.studentMainFrame = studentMainFrame;
         initComponents();
@@ -35,36 +39,43 @@ public class ViewCommentsJInternalFrame extends JInternalFrame {
 
         int id = Integer.parseInt(idTxt.getText());
 
-        if (textbookJrb.isSelected()) {
-            // code lacking for textbook
-        } else {
-            Connection con = null;
-            try {
-                con = dbUtil.getCon();
-                ResultSet resultSet = novelDao.list(con, new Novel());
-                boolean flag = false;
 
-                while (resultSet.next()) {
-                    String currentId = resultSet.getString("id");
-                    if ((id == Integer.parseInt(currentId))) {
-                        this.dispose();
+        Connection con = null;
+        ResultSet resultSet = null;
+        try {
+            con = dbUtil.getCon();
+
+            if (textbookJrb.isSelected()) {
+                resultSet = textbookDao.list(con, new Textbook());
+            } else {
+                resultSet = novelDao.list(con, new Novel());
+            }
+            boolean flag = false;
+
+            while (resultSet.next()) {
+                String currentId = resultSet.getString("id");
+                if ((id == Integer.parseInt(currentId))) {
+                    this.dispose();
+                    if (textbookJrb.isSelected()) {
+                        studentMainFrame.addJInternalFrame(new CommentsAndRatingJInternalFrame("textbook", id));
+                    } else {
                         studentMainFrame.addJInternalFrame(new CommentsAndRatingJInternalFrame("novel", id));
-                        flag = true;
-                        break;
                     }
+                    flag = true;
+                    break;
                 }
+            }
 
-                if (!flag) {
-                    JOptionPane.showMessageDialog(null, "The book with such id doesn't exist");
-                }
+            if (!flag) {
+                JOptionPane.showMessageDialog(null, "The book with such id doesn't exist");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dbUtil.closeCon(con);
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    dbUtil.closeCon(con);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         }
     }
