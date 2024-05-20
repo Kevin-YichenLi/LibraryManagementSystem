@@ -226,8 +226,4 @@ public class MainJFrame extends JFrame {
         AddBookJInternalFrame addBookJInternalFrame = new AddBookJInternalFrame();
         desktopPane.add(addBookJInternalFrame);
     }
-
-    public static void main(String[] args) {
-        new MainJFrame();
-    }
 }

@@ -20,7 +20,7 @@ public class NovelDao implements Commentable, LibraryItemDao<Novel>{
      * @throws Exception
      */
     public int add(Connection con, Novel novel) throws Exception {
-        String sql = "insert into t_novel values(null, ?, ?, ?, ?, ?)";
+        String sql = "insert into t_novel (id, author, storageNum, yearOfPublication, title, genre) values(null, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, novel.getAuthor());
         preparedStatement.setInt(2, novel.getStorageNum());

@@ -12,7 +12,7 @@ import java.sql.ResultSet;
  */
 public class TextbookDao implements LibraryItemDao<Textbook>, Commentable{
     public int add(Connection con, Textbook textbook) throws Exception {
-        String sql = "insert into t_textbook values(null, ?, ?, ?, ?)";
+        String sql = "insert into t_textbook (id, author, storageNum, yearOfPublication, title) values(null, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, textbook.getAuthor());
         preparedStatement.setInt(2, textbook.getStorageNum());

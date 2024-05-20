@@ -98,7 +98,6 @@ public class StudentMainJFrame extends JFrame {
                     menuItem6.setText("View novels");
                     menuItem6.addActionListener(e -> {
 			onViewNovelsPressed(e);
-			onViewNovelsPressed(e);
 		});
                     menu5.add(menuItem6);
                 }
